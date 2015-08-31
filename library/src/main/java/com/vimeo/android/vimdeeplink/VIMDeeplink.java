@@ -96,8 +96,7 @@ public class VIMDeeplink {
      * false otherwise
      */
     public static boolean showVideoWithUri(final Context context, final String videoUriPath) {
-        if (videoUriPath.startsWith(VIMEO_VIDEO_URI_PREFIX) &&
-            (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_VIDEO)) {
+        if (videoUriPath.startsWith(VIMEO_VIDEO_URI_PREFIX) && canHandleVideoDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + videoUriPath));
             return startActivity(context, intent);
         }
@@ -124,8 +123,7 @@ public class VIMDeeplink {
      * false otherwise
      */
     public static boolean showCategoryWithUri(final Context context, final String categoryUriPath) {
-        if (categoryUriPath.startsWith(VIMEO_CATEGORY_URI_PREFIX) &&
-            (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORY)) {
+        if (categoryUriPath.startsWith(VIMEO_CATEGORY_URI_PREFIX) && canHandleCategoryDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + categoryUriPath));
             return startActivity(context, intent);
         }
