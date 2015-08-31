@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">VIMDeeplinkAndroidExample</string>
+
+    <string name="activity_main_instructions">Select the type of deep link you wish to perform. If you know a URI Path for the type of deep link you wish to perform, you may enter it. By leaving it blank, a default URI Path will be used. Hit the GO button once ready!</string>
+    <string name="activity_main_go">GO!</string>
+    <string name="activity_main_launch">Launch Vimeo</string>
+    <string name="activity_main_playstore">View in Play Store</string>
+    <string name="activity_main_select_error">Please choose a deep link type!</string>
+    <string name="activity_main_uri_hint">URI Path</string>
+    <string name="activity_main_type_category">Category</string>
+    <string name="activity_main_type_video">Video</string>
+    <string name="activity_main_deeplink_failure">Could not perform the following deep link!</string>
+</resources>
