@@ -46,11 +46,10 @@ public class VIMDeeplink {
      * View the Vimeo app in the Google Play Store
      * First, it tries the offical app. The fallback is the website
      *
-     *
      * @param context
      * @return true if the Google Play Store app is launched to the Vimeo download page, or if the fallback
-     *          Google Play Store website is launched to it; false if neither the Google Play app or website
-     *          are launched
+     * Google Play Store website is launched to it; false if neither the Google Play app or website
+     * are launched
      */
     public static boolean viewVimeoAppInAppStore(final Context context) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(PLAY_STORE_URI));
@@ -149,6 +148,7 @@ public class VIMDeeplink {
 
     private static boolean startActivity(final Context context, final Intent intent) {
         if (intent != null && intent.resolveActivity(context.getPackageManager()) != null) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             return true;
         }
