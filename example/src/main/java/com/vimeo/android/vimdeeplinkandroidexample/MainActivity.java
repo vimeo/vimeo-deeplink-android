@@ -14,11 +14,13 @@ import com.vimeo.android.vimdeeplink.VIMDeeplink;
 public class MainActivity extends AppCompatActivity {
 
     private static final String DEFAULT_CATEGORY_URI_PATH = "art";
+    private static final String DEFAULT_USER_URI_PATH = "vimeomobile";
     private static final String DEFAULT_VIDEO_URI_PATH = "71994339";
 
     public enum DeepLinkType {
         NONE,
         CATEGORY,
+        USER,
         VIDEO
     }
 
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
             switch (checkedId) {
                 case R.id.activity_main_category_radiobutton:
                     mDeepLinkType = DeepLinkType.CATEGORY;
+                    break;
+                case R.id.activity_main_user_radiobutton:
+                    mDeepLinkType = DeepLinkType.USER;
                     break;
                 case R.id.activity_main_video_radiobutton:
                     mDeepLinkType = DeepLinkType.VIDEO;
@@ -70,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
         RadioButton videoRadioButton = (RadioButton) findViewById(R.id.activity_main_video_radiobutton);
         videoRadioButton.setEnabled(VIMDeeplink.canHandleVideoDeeplink(this));
+        RadioButton userRadioButton = (RadioButton) findViewById(R.id.activity_main_user_radiobutton);
+        userRadioButton.setEnabled(VIMDeeplink.canHandleUserDeeplink(this));
         RadioButton categoryRadioButton = (RadioButton) findViewById(R.id.activity_main_category_radiobutton);
         categoryRadioButton.setEnabled(VIMDeeplink.canHandleCategoryDeeplink(this));
 
@@ -99,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         switch (mDeepLinkType) {
             case CATEGORY:
                 return DEFAULT_CATEGORY_URI_PATH;
+            case USER:
+                return DEFAULT_USER_URI_PATH;
             case VIDEO:
                 return DEFAULT_VIDEO_URI_PATH;
             case NONE:
@@ -114,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
             case CATEGORY:
                 uri = VIMDeeplink.VIMEO_CATEGORY_URI_PREFIX + uriPath;
                 handled = VIMDeeplink.showCategoryWithUri(this, uri);
+                break;
+            case USER:
+                uri = VIMDeeplink.VIMEO_USER_URI_PREFIX + uriPath;
+                handled = VIMDeeplink.showUserWithUri(this, uri);
                 break;
             case VIDEO:
                 uri = VIMDeeplink.VIMEO_VIDEO_URI_PREFIX + uriPath;

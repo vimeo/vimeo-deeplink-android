@@ -8,6 +8,7 @@
     <string name="activity_main_select_error">Please choose a deep link type!</string>
     <string name="activity_main_uri_hint">URI Path</string>
     <string name="activity_main_type_category">Category</string>
+    <string name="activity_main_type_user">User</string>
     <string name="activity_main_type_video">Video</string>
     <string name="activity_main_deeplink_failure">Could not perform the following deep link!</string>
 </resources>

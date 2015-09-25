@@ -14,6 +14,7 @@ import android.net.Uri;
 public class VIMDeeplink {
 
     private static final int VERSION_CODE_DEEP_LINK_CATEGORY = 48;
+    private static final int VERSION_CODE_DEEP_LINK_USER = 49;
     private static final int VERSION_CODE_DEEP_LINK_VIDEO = 48;
 
     private static final String VIMEO_BASE_URI = "vimeo://app.vimeo.com";
@@ -23,6 +24,7 @@ public class VIMDeeplink {
             "http://play.google.com/store/apps/details?id=" + VIMEO_APP_PACKAGE;
 
     public static final String VIMEO_VIDEO_URI_PREFIX = "/videos/";
+    public static final String VIMEO_USER_URI_PREFIX = "/users/";
     public static final String VIMEO_CATEGORY_URI_PREFIX = "/categories/";
 
 
@@ -125,6 +127,33 @@ public class VIMDeeplink {
     public static boolean showCategoryWithUri(final Context context, final String categoryUriPath) {
         if (categoryUriPath.startsWith(VIMEO_CATEGORY_URI_PREFIX) && canHandleCategoryDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + categoryUriPath));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a user deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a user deep link
+     */
+    public static boolean canHandleUserDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_USER;
+    }
+
+    /**
+     * Open the Vimeo app to the user profile screen for the specified user uri
+     *
+     * @param context
+     * @param userUriPath this path should be in the format "/users/{userId}" and should be
+     *                        taken from the uri field of a user JSON object from the API
+     * @return true if the param userUriPath is correct and the Vimeo app can handle the user deep link;
+     * false otherwise
+     */
+    public static boolean showUserWithUri(final Context context, final String userUriPath) {
+        if (userUriPath.startsWith(VIMEO_USER_URI_PREFIX) && canHandleUserDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + userUriPath));
             return startActivity(context, intent);
         }
         return false;
