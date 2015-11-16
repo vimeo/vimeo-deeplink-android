@@ -16,6 +16,13 @@ public class VIMDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_CATEGORY = 48;
     private static final int VERSION_CODE_DEEP_LINK_USER = 49;
     private static final int VERSION_CODE_DEEP_LINK_VIDEO = 48;
+    private static final int VERSION_CODE_DEEP_LINK_CATEGORIES = 74;
+    private static final int VERSION_CODE_DEEP_LINK_CHANNELS = 74;
+    private static final int VERSION_CODE_DEEP_LINK_EXPLORE = 74;
+    private static final int VERSION_CODE_DEEP_LINK_FEED = 74;
+    private static final int VERSION_CODE_DEEP_LINK_ME = 74;
+    private static final int VERSION_CODE_DEEP_LINK_PLAYLISTS = 74;
+    private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
 
     private static final String VIMEO_BASE_URI = "vimeo://app.vimeo.com";
     private static final String VIMEO_APP_PACKAGE = "com.vimeo.android.videoapp";
@@ -23,9 +30,17 @@ public class VIMDeeplink {
     private static final String PLAY_STORE_WEB_URL =
             "http://play.google.com/store/apps/details?id=" + VIMEO_APP_PACKAGE;
 
+    private static final String CATEGORIES = "/categories";
+    private static final String EXPLORE = "/explore";
+    private static final String FEED = "/feed";
+    private static final String ME = "/me";
+    private static final String PLAYLISTS = "/playlists";
+    private static final String UPLOAD = "/upload";
+
     public static final String VIMEO_VIDEO_URI_PREFIX = "/videos/";
     public static final String VIMEO_USER_URI_PREFIX = "/users/";
     public static final String VIMEO_CATEGORY_URI_PREFIX = "/categories/";
+    public static final String VIMEO_CHANNEL_URI_PREFIX = "/channels/";
 
 
     /**
@@ -133,6 +148,33 @@ public class VIMDeeplink {
     }
 
     /**
+     * Determine if the user's Vimeo app can handle a channel deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a channel deep link
+     */
+    public static boolean canHandleChannelDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CHANNELS;
+    }
+
+    /**
+     * Open the Vimeo app to the channel screen for the specified channel uri
+     *
+     * @param context
+     * @param channelUriPath this path should be in the format "/channels/{channelParam}" and should be
+     *                       taken from the uri field of a channel JSON object from the API
+     * @return true if the param channelUriPath is correct and the Vimeo app can handle the channel deep link;
+     * false otherwise
+     */
+    public static boolean showChannelWithUri(final Context context, final String channelUriPath) {
+        if (channelUriPath.startsWith(VIMEO_CHANNEL_URI_PREFIX) && canHandleChannelDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + channelUriPath));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
      * Determine if the user's Vimeo app can handle a user deep link
      *
      * @param context
@@ -147,7 +189,7 @@ public class VIMDeeplink {
      *
      * @param context
      * @param userUriPath this path should be in the format "/users/{userId}" and should be
-     *                        taken from the uri field of a user JSON object from the API
+     *                    taken from the uri field of a user JSON object from the API
      * @return true if the param userUriPath is correct and the Vimeo app can handle the user deep link;
      * false otherwise
      */
@@ -159,12 +201,96 @@ public class VIMDeeplink {
         return false;
     }
 
+    /**
+     * Open the Vimeo App to the All Categories screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Categories deeplink
+     */
+    public static boolean showCategories(final Context context) {
+        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORIES) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + CATEGORIES));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Open the Vimeo App to the Explore screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Explore deeplink
+     */
+    public static boolean showExplore(final Context context) {
+        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_EXPLORE) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + EXPLORE));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Open the Vimeo App to the Feed screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Feed deeplink
+     */
+    public static boolean showFeed(final Context context) {
+        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_FEED) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + FEED));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Open the Vimeo App to the Me screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Me/My Profile deeplink
+     */
+    public static boolean showMyProfile(final Context context) {
+        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ME) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + ME));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Open the Vimeo App to the Playlists screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Playlists deeplink
+     */
+    public static boolean showPlaylists(final Context context) {
+        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PLAYLISTS) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + PLAYLISTS));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Open the Vimeo App to the Upload screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Upload deeplink
+     */
+    public static boolean showUpload(final Context context) {
+        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPLOAD) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + UPLOAD));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
     private static int vimeoAppVersion(final Context context) {
         if (isVimeoAppInstalled(context)) {
             PackageManager packageManager = context.getPackageManager();
             try {
-                PackageInfo packageInfo = packageManager
-                        .getPackageInfo(VIMEO_APP_PACKAGE, PackageManager.GET_ACTIVITIES);
+                PackageInfo packageInfo =
+                        packageManager.getPackageInfo(VIMEO_APP_PACKAGE, PackageManager.GET_ACTIVITIES);
                 return packageInfo.versionCode;
             } catch (PackageManager.NameNotFoundException e) {
                 return 0;
