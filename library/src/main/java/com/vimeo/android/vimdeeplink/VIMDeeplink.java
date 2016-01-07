@@ -301,7 +301,7 @@ public class VIMDeeplink {
 
     private static boolean startActivity(final Context context, final Intent intent) {
         if (intent != null && intent.resolveActivity(context.getPackageManager()) != null) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intent);
             return true;
         }
