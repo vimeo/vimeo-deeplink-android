@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.util.Log;
 
 /**
  * This is a utility class to help facilitate deep linking into the Vimeo Android application
@@ -394,7 +393,6 @@ public class VIMDeeplink {
             try {
                 PackageInfo packageInfo =
                         packageManager.getPackageInfo(VIMEO_APP_PACKAGE, PackageManager.GET_ACTIVITIES);
-                Log.d("WTF", "code? " + String.valueOf(packageInfo.versionCode));
                 return packageInfo.versionCode;
             } catch (PackageManager.NameNotFoundException e) {
                 return 0;
