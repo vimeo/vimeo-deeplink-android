@@ -58,7 +58,6 @@ public class VIMDeeplink {
             packageManager.getPackageInfo(VIMEO_APP_PACKAGE, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
             return false;
         }
     }
