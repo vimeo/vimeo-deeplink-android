@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * This is a utility class to help facilitate deep linking into the Vimeo Android application
@@ -13,6 +14,7 @@ import android.net.Uri;
  */
 public class VIMDeeplink {
 
+    private static final int VERSION_CODE_DEBUG = 0;
     private static final int VERSION_CODE_DEEP_LINK_CATEGORY = 48;
     private static final int VERSION_CODE_DEEP_LINK_USER = 49;
     private static final int VERSION_CODE_DEEP_LINK_VIDEO = 48;
@@ -23,7 +25,9 @@ public class VIMDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_ME = 74;
     private static final int VERSION_CODE_DEEP_LINK_PLAYLISTS = 74;
     private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
+    private static final int VERSION_CODE_DEEP_LINK_URL = 234;
 
+    private static final String VIMEO_BASE_URL_HOST = "vimeo.com";
     private static final String VIMEO_BASE_URI = "vimeo://app.vimeo.com";
     private static final String VIMEO_APP_PACKAGE = "com.vimeo.android.videoapp";
     private static final String PLAY_STORE_URI = "market://details?id=" + VIMEO_APP_PACKAGE;
@@ -55,6 +59,7 @@ public class VIMDeeplink {
             packageManager.getPackageInfo(VIMEO_APP_PACKAGE, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -100,7 +105,8 @@ public class VIMDeeplink {
      * @return true if the Vimeo app is installed and it can handle a video deep link
      */
     public static boolean canHandleVideoDeeplink(final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_VIDEO;
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_VIDEO ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -127,7 +133,8 @@ public class VIMDeeplink {
      * @return true if the Vimeo app is installed and it can handle a category deep link
      */
     public static boolean canHandleCategoryDeeplink(final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORY;
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORY ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -154,7 +161,8 @@ public class VIMDeeplink {
      * @return true if the Vimeo app is installed and it can handle a channel deep link
      */
     public static boolean canHandleChannelDeeplink(final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CHANNELS;
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CHANNELS ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -181,7 +189,8 @@ public class VIMDeeplink {
      * @return true if the Vimeo app is installed and it can handle a user deep link
      */
     public static boolean canHandleUserDeeplink(final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_USER;
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_USER ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -208,11 +217,22 @@ public class VIMDeeplink {
      * @return true if the Vimeo app opens the Categories deeplink
      */
     public static boolean showCategories(final Context context) {
-        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORIES) {
+        if (canHandleCategoiesDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + CATEGORIES));
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a categories deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a categories deep link
+     */
+    public static boolean canHandleCategoiesDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORIES ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -222,11 +242,22 @@ public class VIMDeeplink {
      * @return true if the Vimeo app opens the Explore deeplink
      */
     public static boolean showExplore(final Context context) {
-        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_EXPLORE) {
+        if (canHandleExploreDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + EXPLORE));
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a explore deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a explore deep link
+     */
+    public static boolean canHandleExploreDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_EXPLORE ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -236,11 +267,22 @@ public class VIMDeeplink {
      * @return true if the Vimeo app opens the Feed deeplink
      */
     public static boolean showFeed(final Context context) {
-        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_FEED) {
+        if (canHandleFeedDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + FEED));
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a feed deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a feed deep link
+     */
+    public static boolean canHandleFeedDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_FEED ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -250,11 +292,22 @@ public class VIMDeeplink {
      * @return true if the Vimeo app opens the Me/My Profile deeplink
      */
     public static boolean showMyProfile(final Context context) {
-        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ME) {
+        if (canHandleMeDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + ME));
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a Me deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a Me deep link
+     */
+    public static boolean canHandleMeDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ME ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -264,11 +317,22 @@ public class VIMDeeplink {
      * @return true if the Vimeo app opens the Playlists deeplink
      */
     public static boolean showPlaylists(final Context context) {
-        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PLAYLISTS) {
+        if (canHandlePlaylistDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + PLAYLISTS));
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a playlist deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a playlist deep link
+     */
+    public static boolean canHandlePlaylistDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PLAYLISTS ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
     /**
@@ -278,11 +342,50 @@ public class VIMDeeplink {
      * @return true if the Vimeo app opens the Upload deeplink
      */
     public static boolean showUpload(final Context context) {
-        if (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPLOAD) {
+        if (canHandleUploadDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + UPLOAD));
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a upload deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a upload deep link
+     */
+    public static boolean canHandleUploadDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPLOAD ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo App for the given url
+     *
+     * @param context
+     * @param url
+     * @return true if the Vimeo app opens the url
+     */
+    public static boolean openUrl(final Context context, final String url) {
+        if (canHandleUrl(context, url)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle the given url
+     *
+     * @param context
+     * @param url
+     * @return true if the Vimeo app is installed and the url contains the url host scheme
+     */
+    public static boolean canHandleUrl(final Context context, final String url) {
+        return (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_URL ||
+                vimeoAppVersion(context) == VERSION_CODE_DEBUG) &&
+               url.toLowerCase().contains(VIMEO_BASE_URL_HOST);
     }
 
     private static int vimeoAppVersion(final Context context) {
@@ -291,6 +394,7 @@ public class VIMDeeplink {
             try {
                 PackageInfo packageInfo =
                         packageManager.getPackageInfo(VIMEO_APP_PACKAGE, PackageManager.GET_ACTIVITIES);
+                Log.d("WTF", "code? " + String.valueOf(packageInfo.versionCode));
                 return packageInfo.versionCode;
             } catch (PackageManager.NameNotFoundException e) {
                 return 0;
