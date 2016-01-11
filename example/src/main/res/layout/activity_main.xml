@@ -156,6 +156,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="@string/activity_main_type_user"/>
+
+            <RadioButton
+                android:id="@+id/activity_main_url_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/activity_main_type_url"/>
         </RadioGroup>
 
         <Button

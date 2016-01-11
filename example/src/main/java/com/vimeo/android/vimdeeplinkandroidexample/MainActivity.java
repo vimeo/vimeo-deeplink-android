@@ -15,13 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String DEFAULT_CATEGORY_URI_PATH = "art";
     private static final String DEFAULT_CHANNEL_URI_PATH = "staffpicks";
-    private static final String DEFAULT_USER_URI_PATH = "vimeomobile";
-    private static final String DEFAULT_VIDEO_URI_PATH = "71994339";
+    private static final String DEFAULT_USER_URI_PATH = "staff";
+    private static final String DEFAULT_VIDEO_URI_PATH = "149058362";
+    private static final String DEFAULT_VIDEO_URL = "http://www.vimeo.com/148943792";
 
     public enum DeepLinkType {
         NONE,
         CATEGORY,
         CHANNEL,
+        URL,
         USER,
         VIDEO
     }
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.activity_main_channel_radiobutton:
                             mDeepLinkType = DeepLinkType.CHANNEL;
+                            break;
+                        case R.id.activity_main_url_radiobutton:
+                            mDeepLinkType = DeepLinkType.URL;
                             break;
                         case R.id.activity_main_user_radiobutton:
                             mDeepLinkType = DeepLinkType.USER;
@@ -87,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         categoryRadioButton.setEnabled(VIMDeeplink.canHandleCategoryDeeplink(this));
         RadioButton channelRadioButton = (RadioButton) findViewById(R.id.activity_main_channel_radiobutton);
         channelRadioButton.setEnabled(VIMDeeplink.canHandleChannelDeeplink(this));
+        RadioButton urlRadioButton = (RadioButton) findViewById(R.id.activity_main_url_radiobutton);
+        urlRadioButton.setEnabled(VIMDeeplink.canHandleUrl(this, DEFAULT_VIDEO_URL));
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.activity_main_radiogroup);
         radioGroup.setOnCheckedChangeListener(mCheckedChangeListener);
@@ -109,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button categoriesButton = (Button) findViewById(R.id.activity_main_categories_button);
+        categoriesButton.setEnabled(VIMDeeplink.canHandleCategoiesDeeplink(MainActivity.this));
         categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button exploreButton = (Button) findViewById(R.id.activity_main_explore_button);
+        exploreButton.setEnabled(VIMDeeplink.canHandleExploreDeeplink(MainActivity.this));
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button feedButton = (Button) findViewById(R.id.activity_main_feed_button);
+        feedButton.setEnabled(VIMDeeplink.canHandleFeedDeeplink(MainActivity.this));
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button myProfileButton = (Button) findViewById(R.id.activity_main_me_button);
+        myProfileButton.setEnabled(VIMDeeplink.canHandleMeDeeplink(MainActivity.this));
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button playlistsButton = (Button) findViewById(R.id.activity_main_playlists_button);
+        playlistsButton.setEnabled(VIMDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
         playlistsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button uploadButton = (Button) findViewById(R.id.activity_main_upload_button);
+        uploadButton.setEnabled(VIMDeeplink.canHandleUploadDeeplink(MainActivity.this));
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
                 return DEFAULT_CATEGORY_URI_PATH;
             case CHANNEL:
                 return DEFAULT_CHANNEL_URI_PATH;
+            case URL:
+                return DEFAULT_VIDEO_URL;
             case USER:
                 return DEFAULT_USER_URI_PATH;
             case VIDEO:
@@ -179,6 +194,9 @@ public class MainActivity extends AppCompatActivity {
             case CHANNEL:
                 uri = VIMDeeplink.VIMEO_CHANNEL_URI_PREFIX + uriPath;
                 handled = VIMDeeplink.showChannelWithUri(this, uri);
+                break;
+            case URL:
+                handled = VIMDeeplink.openUrl(this, uriPath);
                 break;
             case USER:
                 uri = VIMDeeplink.VIMEO_USER_URI_PREFIX + uriPath;
