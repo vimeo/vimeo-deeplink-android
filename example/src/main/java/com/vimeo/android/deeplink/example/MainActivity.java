@@ -1,3 +1,25 @@
+/*
+ * Copyright (c) 2016 Vimeo (https://vimeo.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.vimeo.android.deeplink.example;
 
 import android.os.Bundle;
@@ -9,7 +31,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.vimeo.android.vimdeeplink.VIMDeeplink;
+import com.vimeo.android.vimdeeplink.VimeoDeeplink;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,82 +107,82 @@ public class MainActivity extends AppCompatActivity {
         mUriEditText = (EditText) findViewById(R.id.activity_main_edittext);
 
         RadioButton videoRadioButton = (RadioButton) findViewById(R.id.activity_main_video_radiobutton);
-        videoRadioButton.setEnabled(VIMDeeplink.canHandleVideoDeeplink(this));
+        videoRadioButton.setEnabled(VimeoDeeplink.canHandleVideoDeeplink(this));
         RadioButton userRadioButton = (RadioButton) findViewById(R.id.activity_main_user_radiobutton);
-        userRadioButton.setEnabled(VIMDeeplink.canHandleUserDeeplink(this));
+        userRadioButton.setEnabled(VimeoDeeplink.canHandleUserDeeplink(this));
         RadioButton categoryRadioButton = (RadioButton) findViewById(R.id.activity_main_category_radiobutton);
-        categoryRadioButton.setEnabled(VIMDeeplink.canHandleCategoryDeeplink(this));
+        categoryRadioButton.setEnabled(VimeoDeeplink.canHandleCategoryDeeplink(this));
         RadioButton channelRadioButton = (RadioButton) findViewById(R.id.activity_main_channel_radiobutton);
-        channelRadioButton.setEnabled(VIMDeeplink.canHandleChannelDeeplink(this));
+        channelRadioButton.setEnabled(VimeoDeeplink.canHandleChannelDeeplink(this));
         RadioButton urlRadioButton = (RadioButton) findViewById(R.id.activity_main_url_radiobutton);
-        urlRadioButton.setEnabled(VIMDeeplink.canHandleUrl(this, DEFAULT_VIDEO_URL));
+        urlRadioButton.setEnabled(VimeoDeeplink.canHandleUrl(this, DEFAULT_VIDEO_URL));
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.activity_main_radiogroup);
         radioGroup.setOnCheckedChangeListener(mCheckedChangeListener);
 
-        mGoButton.setEnabled(VIMDeeplink.isVimeoAppInstalled(this));
+        mGoButton.setEnabled(VimeoDeeplink.isVimeoAppInstalled(this));
         mGoButton.setOnClickListener(mGoClickListener);
 
         Button launchButton = (Button) findViewById(R.id.activity_main_launch_button);
         launchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.openVimeoApp(MainActivity.this);
+                VimeoDeeplink.openVimeoApp(MainActivity.this);
             }
         });
         Button playstoreButton = (Button) findViewById(R.id.activity_main_playstore_button);
         playstoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.viewVimeoAppInAppStore(MainActivity.this);
+                VimeoDeeplink.viewVimeoAppInAppStore(MainActivity.this);
             }
         });
         Button categoriesButton = (Button) findViewById(R.id.activity_main_categories_button);
-        categoriesButton.setEnabled(VIMDeeplink.canHandleCategoiesDeeplink(MainActivity.this));
+        categoriesButton.setEnabled(VimeoDeeplink.canHandleCategoiesDeeplink(MainActivity.this));
         categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.showCategories(MainActivity.this);
+                VimeoDeeplink.showCategories(MainActivity.this);
             }
         });
         Button exploreButton = (Button) findViewById(R.id.activity_main_explore_button);
-        exploreButton.setEnabled(VIMDeeplink.canHandleExploreDeeplink(MainActivity.this));
+        exploreButton.setEnabled(VimeoDeeplink.canHandleExploreDeeplink(MainActivity.this));
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.showExplore(MainActivity.this);
+                VimeoDeeplink.showExplore(MainActivity.this);
             }
         });
         Button feedButton = (Button) findViewById(R.id.activity_main_feed_button);
-        feedButton.setEnabled(VIMDeeplink.canHandleFeedDeeplink(MainActivity.this));
+        feedButton.setEnabled(VimeoDeeplink.canHandleFeedDeeplink(MainActivity.this));
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.showFeed(MainActivity.this);
+                VimeoDeeplink.showFeed(MainActivity.this);
             }
         });
         Button myProfileButton = (Button) findViewById(R.id.activity_main_me_button);
-        myProfileButton.setEnabled(VIMDeeplink.canHandleMeDeeplink(MainActivity.this));
+        myProfileButton.setEnabled(VimeoDeeplink.canHandleMeDeeplink(MainActivity.this));
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.showMyProfile(MainActivity.this);
+                VimeoDeeplink.showMyProfile(MainActivity.this);
             }
         });
         Button playlistsButton = (Button) findViewById(R.id.activity_main_playlists_button);
-        playlistsButton.setEnabled(VIMDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        playlistsButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
         playlistsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.showPlaylists(MainActivity.this);
+                VimeoDeeplink.showPlaylists(MainActivity.this);
             }
         });
         Button uploadButton = (Button) findViewById(R.id.activity_main_upload_button);
-        uploadButton.setEnabled(VIMDeeplink.canHandleUploadDeeplink(MainActivity.this));
+        uploadButton.setEnabled(VimeoDeeplink.canHandleUploadDeeplink(MainActivity.this));
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VIMDeeplink.showUpload(MainActivity.this);
+                VimeoDeeplink.showUpload(MainActivity.this);
             }
         });
     }
@@ -188,23 +210,23 @@ public class MainActivity extends AppCompatActivity {
         boolean handled = false;
         switch (mDeepLinkType) {
             case CATEGORY:
-                uri = VIMDeeplink.VIMEO_CATEGORY_URI_PREFIX + uriPath;
-                handled = VIMDeeplink.showCategoryWithUri(this, uri);
+                uri = VimeoDeeplink.VIMEO_CATEGORY_URI_PREFIX + uriPath;
+                handled = VimeoDeeplink.showCategoryWithUri(this, uri);
                 break;
             case CHANNEL:
-                uri = VIMDeeplink.VIMEO_CHANNEL_URI_PREFIX + uriPath;
-                handled = VIMDeeplink.showChannelWithUri(this, uri);
+                uri = VimeoDeeplink.VIMEO_CHANNEL_URI_PREFIX + uriPath;
+                handled = VimeoDeeplink.showChannelWithUri(this, uri);
                 break;
             case URL:
-                handled = VIMDeeplink.openUrl(this, uriPath);
+                handled = VimeoDeeplink.openUrl(this, uriPath);
                 break;
             case USER:
-                uri = VIMDeeplink.VIMEO_USER_URI_PREFIX + uriPath;
-                handled = VIMDeeplink.showUserWithUri(this, uri);
+                uri = VimeoDeeplink.VIMEO_USER_URI_PREFIX + uriPath;
+                handled = VimeoDeeplink.showUserWithUri(this, uri);
                 break;
             case VIDEO:
-                uri = VIMDeeplink.VIMEO_VIDEO_URI_PREFIX + uriPath;
-                handled = VIMDeeplink.showVideoWithUri(this, uri);
+                uri = VimeoDeeplink.VIMEO_VIDEO_URI_PREFIX + uriPath;
+                handled = VimeoDeeplink.showVideoWithUri(this, uri);
                 break;
             case NONE:
                 break;
