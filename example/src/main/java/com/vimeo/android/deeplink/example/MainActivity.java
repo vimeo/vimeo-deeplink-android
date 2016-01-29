@@ -1,4 +1,4 @@
-package com.vimeo.android.vimdeeplinkandroidexample;
+package com.vimeo.android.deeplink.example;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
