@@ -31,7 +31,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.vimeo.android.vimdeeplink.VimeoDeeplink;
+import com.vimeo.android.deeplink.VimeoDeeplink;
 
 public class MainActivity extends AppCompatActivity {
 

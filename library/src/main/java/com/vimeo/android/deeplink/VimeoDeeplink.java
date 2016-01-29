@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.vimeo.android.vimdeeplink;
+package com.vimeo.android.deeplink;
 
 import android.content.Context;
 import android.content.Intent;
