@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VIMDeeplinkAndroidExample</string>
+    <string name="app_name">Vimeo Deeplink</string>
 
     <string name="activity_main_static">Static Helpers</string>
     <string name="activity_main_dynamic">Dynamic Helpers</string>
