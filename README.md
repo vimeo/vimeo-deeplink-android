@@ -2,7 +2,7 @@
 A helper library to deep link into the official Vimeo Android App.
 
 
-# Contents
+## Contents
  - [Reference](#reference)
   - [View app in the Google Play store](#open-app-in-the-google-play-store)
   - [Check if the Vimeo app is installed](#check-if-the-vimeo-app-is-installed)
@@ -18,7 +18,7 @@ A helper library to deep link into the official Vimeo Android App.
   - [Open the Playslists page](#open-the-playlists-page)
   - [Open the Camera roll to start the upload flow](#open-the-camera-roll-to-start-the-upload-flow)
 
-# Reference
+## Reference
 
 The Vimeo deeplink base URL is: `vimeo://app.vimeo.com`
 
@@ -34,68 +34,71 @@ Currently supported paths are:
 * `vimeo://app.vimeo.com/playlists`
 * `vimeo://app.vimeo.com/upload`
 
-## Open app in the Google Play store
-`boolean playStoreOpened = VimeoDeeplink.viewVimeoAppInAppStore(Context)`
+### Open app in the Google Play store
+`boolean playStoreOpened = VimeoDeeplink.viewVimeoAppInAppStore(Context context)`
 
-## Check if the Vimeo app is installed
-`boolean isInstalled = VimeoDeeplink.isVimeoAppInstalled(Context)`
+### Check if the Vimeo app is installed
+`boolean isInstalled = VimeoDeeplink.isVimeoAppInstalled(Context context)`
 
-## Open the Vimeo app
-`boolean opened = VimeoDeeplink.openVimeoApp(Context)`
+### Open the Vimeo app
+`boolean opened = VimeoDeeplink.openVimeoApp(Context context)`
 
-## View a video in the Vimeo app
+### View a video in the Vimeo app
 
 You can check if this method is supported on the installed Vimeo version using the call:
-`boolean supported = VimeoDeeplink.canHandleVideoDeeplink(Context)`
+
+`boolean supported = VimeoDeeplink.canHandleVideoDeeplink(Context context)`
 
 You must provide a video uri to this method. You can find a video's uri by making an API call to our [video endpoints](https://developer.vimeo.com/api/endpoints/videos#/{video_id}).
-
 `boolean handled = VimeoDeeplink.showVideoWithUri(Context context, String videoUri)`
 
-## View a user in the Vimeo app
+### View a user in the Vimeo app
 
 You can check if this method is supported on the installed Vimeo version using the call:
-`boolean supported = VimeoDeeplink.canHandleUserDeeplink(Context)`
+
+`boolean supported = VimeoDeeplink.canHandleUserDeeplink(Context context)`
 
 You must provide a user uri to this method. You can find a user's uri by making an API call to our [user endpoints](https://developer.vimeo.com/api/endpoints/users#/{user_id}).
 
 `boolean handled = VimeoDeeplink.showUserWithUri(Context context, String userUri)`
 
-## View a category in the Vimeo app
+### View a category in the Vimeo app
 
 You can check if this method is supported on the installed Vimeo version using the call:
-`boolean supported = VimeoDeeplink.canHandleCategoryDeeplink(Context)`
+
+`boolean supported = VimeoDeeplink.canHandleCategoryDeeplink(Context context)`
 
 You must provide a category uri to this method. You can find a categories uri by making an API call to our [category endpoints](https://developer.vimeo.com/api/endpoints/categories#/{category_id}).
 
 `boolean handled = VimeoDeeplink.showCategoryWithUri(Context context, String categoryUri)`
 
-## View a channel in the Vimeo app
+### View a channel in the Vimeo app
 
 You can check if this method is supported on the installed Vimeo version using the call:
-`boolean supported = VimeoDeeplink.canHandleChannelDeeplink(Context)`
+
+`boolean supported = VimeoDeeplink.canHandleChannelDeeplink(Context context)`
 
 You must provide a channel uri to this method. You can find a channel's uri by making an API call to our [channel endpoints](https://developer.vimeo.com/api/endpoints/channels#/{channel_id}).
 
 `boolean handled = VimeoDeeplink.showChannelWithUri(Context context, String channelUri)`
 
-## Open the All Categories page
-`boolean handled = VimeoDeeplink.showCategories(Context)`
+### Open the All Categories page
+`boolean handled = VimeoDeeplink.showCategories(Context context)`
 
-## Open the Explore page
-`boolean handled = VimeoDeeplink.showExplore(Context)`
+### Open the Explore page
+`boolean handled = VimeoDeeplink.showExplore(Context context)`
 
-## Open the Feed
-`boolean handled = VimeoDeeplink.showFeed(Context)`
+### Open the Feed
+`boolean handled = VimeoDeeplink.showFeed(Context context)`
 
-## Open the current user's profile
-`boolean handled = VimeoDeeplink.showMyProfile(Context)`
+### Open the current user's profile
+`boolean handled = VimeoDeeplink.showMyProfile(Context context)`
 
-## Open the Playlists page
-`boolean handled = VimeoDeeplink.showPlaylists(Context)`
+### Open the Playlists page
+`boolean handled = VimeoDeeplink.showPlaylists(Context context)`
 
-## Open the Camera roll to start the upload flow
-`boolean handled = VimeoDeeplink.showUpload(Context)`
+### Open the Camera roll to start the upload flow
+`boolean handled = VimeoDeeplink.showUpload(Context context)`
 
 ## Found an Issue?
 Please file any and all issues found in this library to the git [issue tracker](https://github.com/vimeo/vimeo-deeplink-android/issues)
