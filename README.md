@@ -97,6 +97,9 @@ You must provide a channel uri to this method. You can find a channel's uri by m
 ## Open the Camera roll to start the upload flow
 `boolean handled = VimeoDeeplink.showUpload(Context)`
 
+## Found an Issue?
+Please file any and all issues found in this library to the git [issue tracker](https://github.com/vimeo/vimeo-deeplink-android/issues)
+
 ## Want to Contribute?
 If you'd like to contribute, please follow our guidelines found in [CONTRIBUTING.md](CONTRIBUTING.md)
 
