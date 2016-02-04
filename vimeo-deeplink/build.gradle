@@ -1,5 +1,30 @@
 apply plugin: 'com.android.library'
 
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'vimeo-deeplink-android'
+
+    publishedGroupId = 'com.vimeo.android.deeplink'
+    libraryName = 'vimeo-deeplink'
+    artifact = 'vimeo-deeplink'
+
+    libraryDescription = 'A helper to deep link into the Vimeo Android app'
+
+    siteUrl = 'https://github.com/vimeo/vimeo-deeplink-android'
+    gitUrl = 'https://github.com/vimeo/vimeo-deeplink-android.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'Vimeo'
+    developerName = 'Vimeo'
+    developerEmail = 'Vimeo'
+
+    licenseName = 'The MIT License (MIT)'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ['MIT']
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -20,3 +45,6 @@ android {
 
 dependencies {
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
