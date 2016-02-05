@@ -3,6 +3,9 @@ A helper library to deep link into the official Vimeo Android App.
 
 
 ## Contents
+ - [Getting Started](#getting-started)
+  - [Gradle](#gradle)
+  - [Submodule](#submodule)
  - [Reference](#reference)
   - [View app in the Google Play store](#open-app-in-the-google-play-store)
   - [Check if the Vimeo app is installed](#check-if-the-vimeo-app-is-installed)
@@ -17,6 +20,25 @@ A helper library to deep link into the official Vimeo Android App.
   - [Open the current user's profile](#open-the-current-users-profile)
   - [Open the Playslists page](#open-the-playlists-page)
   - [Open the Camera roll to start the upload flow](#open-the-camera-roll-to-start-the-upload-flow)
+
+## Getting Started
+For a more in depth look at the usage, refer to the [example Android app](example). The example project includes implementation of all of the below features.
+
+### Gradle
+Specify the dependency in your `build.gradle` file (make sure `jcenter()` is included as a repository)
+```groovy
+compile 'com.vimeo.android.deeplink:vimeo-deeplink:1.0.0'
+```
+
+### Submodule
+We recommend using JCenter, but if you'd like to use the library as a submodule:
+```
+git submodule add git@github.com:vimeo/vimeo-deeplink-android.git
+```
+Then in your `build.gradle` use:
+```groovy
+compile project(':vimeo-deeplink-android:vimeo-deeplink')
+```
 
 ## Reference
 
