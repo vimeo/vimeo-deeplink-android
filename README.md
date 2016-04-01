@@ -123,19 +123,23 @@ You must provide a channel uri to this method. You can find a channel's uri by m
 `boolean handled = VimeoDeeplink.showUpload(Context context)`
 
 ## Found an Issue?
-Please file any and all issues found in this library to the git [issue tracker](https://github.com/vimeo/vimeo-deeplink-android/issues)
+
+Please file it in the git [issue tracker](https://github.com/vimeo/vimeo-deeplink-android/issues).
 
 ## Want to Contribute?
-If you'd like to contribute, please follow our guidelines found in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Questions?
-
-Tweet at us here: @vimeoapi
-
-Post on [Stackoverflow](http://stackoverflow.com/questions/tagged/vimeo-android) with the tag `vimeo-android`
-
-Get in touch [here](https://Vimeo.com/help/contact)
+If you'd like to contribute, please follow our guidelines found in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-`vimeo-deeplink-android` is available under the MIT license. See the LICENSE file for more info.
+`vimeo-deeplink-android` is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.
+
+## Questions?
+
+Tweet at us here: [@vimeoapi](https://twitter.com/vimeoapi).
+
+Post on [Stackoverflow](http://stackoverflow.com/questions/tagged/vimeo-android) with the tag `vimeo-android`.
+
+Get in touch [here](https://vimeo.com/help/contact).
+
+Interested in working at Vimeo? We're [hiring](https://vimeo.com/jobs)!
