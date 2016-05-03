@@ -44,9 +44,12 @@ public class VimeoDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_EXPLORE = 74;
     private static final int VERSION_CODE_DEEP_LINK_FEED = 74;
     private static final int VERSION_CODE_DEEP_LINK_ME = 74;
+    private static final int VERSION_CODE_DEEP_LINK_OFFLINE = 470;
     private static final int VERSION_CODE_DEEP_LINK_PLAYLISTS = 74;
+    private static final int VERSION_CODE_DEEP_LINK_PURCHASES = 470;
     private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
     private static final int VERSION_CODE_DEEP_LINK_URL = 234;
+    private static final int VERSION_CODE_DEEP_LINK_WATCHLATER = 470;
 
     private static final String VIMEO_BASE_URL_HOST = "vimeo.com";
     private static final String VIMEO_BASE_URI = "vimeo://app.vimeo.com";
@@ -59,8 +62,11 @@ public class VimeoDeeplink {
     private static final String EXPLORE = "/explore";
     private static final String FEED = "/feed";
     private static final String ME = "/me";
+    private static final String OFFLINE = "/offline";
     private static final String PLAYLISTS = "/playlists";
+    private static final String PURCHASES = "/purchases";
     private static final String UPLOAD = "/upload";
+    private static final String WATCH_LATER = "/watchlater";
 
     public static final String VIMEO_VIDEO_URI_PREFIX = "/videos/";
     public static final String VIMEO_USER_URI_PREFIX = "/users/";
@@ -331,6 +337,31 @@ public class VimeoDeeplink {
     }
 
     /**
+     * Open the Vimeo App to the Offline screen - this is where a users' videos saved for offline will show up.
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Offline deeplink
+     */
+    public static boolean showOffline(final Context context) {
+        if (canHandleOfflineDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + OFFLINE));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a offline deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a offline deep link
+     */
+    public static boolean canHandleOfflineDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_OFFLINE ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
      * Open the Vimeo App to the Playlists screen
      *
      * @param context
@@ -356,6 +387,31 @@ public class VimeoDeeplink {
     }
 
     /**
+     * Open the Vimeo App to the Purchases screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Purchases deeplink
+     */
+    public static boolean showPurchases(final Context context) {
+        if (canHandlePlaylistDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + PURCHASES));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a purchase deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a purchase deep link
+     */
+    public static boolean canHandlePurchaseDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PURCHASES ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
      * Open the Vimeo App to the Upload screen
      *
      * @param context
@@ -377,6 +433,31 @@ public class VimeoDeeplink {
      */
     public static boolean canHandleUploadDeeplink(final Context context) {
         return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPLOAD ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo App to the Watch Later screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Watch Later deeplink
+     */
+    public static boolean showWatchLater(final Context context) {
+        if (canHandleOfflineDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + WATCH_LATER));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a watchlater deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a watchlater deep link
+     */
+    public static boolean canHandleWatchLaterDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_WATCHLATER ||
                vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 

@@ -185,6 +185,30 @@ public class MainActivity extends AppCompatActivity {
                 VimeoDeeplink.showUpload(MainActivity.this);
             }
         });
+        Button offlineButton = (Button) findViewById(R.id.activity_main_offline_button);
+        offlineButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        offlineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VimeoDeeplink.showOffline(MainActivity.this);
+            }
+        });
+        Button watchLaterButton = (Button) findViewById(R.id.activity_main_watchlater_button);
+        watchLaterButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        watchLaterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VimeoDeeplink.showWatchLater(MainActivity.this);
+            }
+        });
+        Button purchasesButton = (Button) findViewById(R.id.activity_main_purchases_button);
+        purchasesButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        purchasesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VimeoDeeplink.showPurchases(MainActivity.this);
+            }
+        });
     }
 
     private String generatedUriPath() {

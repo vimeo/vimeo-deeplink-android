@@ -18,7 +18,7 @@ A helper library to deep link into the official Vimeo Android App.
   - [Open the Explore page](#open-the-explore-page)
   - [Open the Feed](#open-the-feed)
   - [Open the current user's profile](#open-the-current-users-profile)
-  - [Open the Playslists page](#open-the-playlists-page)
+  - [Open the Playlists page](#open-the-playlists-page)
   - [Open the Camera roll to start the upload flow](#open-the-camera-roll-to-start-the-upload-flow)
 
 ## Getting Started
@@ -118,6 +118,15 @@ You must provide a channel uri to this method. You can find a channel's uri by m
 
 ### Open the Playlists page
 `boolean handled = VimeoDeeplink.showPlaylists(Context context)`
+
+### Open the Offline playlist page
+`boolean handled = VimeoDeeplink.showOffline(Context context)`
+
+### Open the Watch Later page
+`boolean handled = VimeoDeeplink.showWatchLater(Context context)`
+
+### Open the Purchases page
+`boolean handled = VimeoDeeplink.showPurchases(Context context)`
 
 ### Open the Camera roll to start the upload flow
 `boolean handled = VimeoDeeplink.showUpload(Context context)`
