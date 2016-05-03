@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button offlineButton = (Button) findViewById(R.id.activity_main_offline_button);
-        offlineButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        offlineButton.setEnabled(VimeoDeeplink.canHandleOfflineDeeplink(MainActivity.this));
         offlineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button watchLaterButton = (Button) findViewById(R.id.activity_main_watchlater_button);
-        watchLaterButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        watchLaterButton.setEnabled(VimeoDeeplink.canHandleWatchLaterDeeplink(MainActivity.this));
         watchLaterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button purchasesButton = (Button) findViewById(R.id.activity_main_purchases_button);
-        purchasesButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
+        purchasesButton.setEnabled(VimeoDeeplink.canHandlePurchaseDeeplink(MainActivity.this));
         purchasesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
