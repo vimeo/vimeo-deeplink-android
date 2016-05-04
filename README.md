@@ -115,6 +115,7 @@ You can check if this method is supported on the installed Vimeo version using t
 `boolean supported = VimeoDeeplink.canHandleOnDemandDeeplink(Context context)`
 
 You must provide an ondemand uri to this method.
+
 `boolean handled = VimeoDeeplink.showOnDemandTitleWithUri(Context context, String ondemandUri)`
 
 ### Open the All Categories page
