@@ -14,11 +14,15 @@ A helper library to deep link into the official Vimeo Android App.
   - [View a user profile in the Vimeo app](#view-a-user-in-the-vimeo-app)
   - [View a category in the Vimeo app](#view-a-category-in-the-vimeo-app)
   - [View a channel in the Vimeo app](#view-a-channel-in-the-vimeo-app)
+  - [View an On Demand film or series in the Vimeo app](#view-an-on-demand-film-or-series-in-the-vimeo-app)
   - [Open the All Categories page](#open-the-all-categories-page)
   - [Open the Explore page](#open-the-explore-page)
   - [Open the Feed](#open-the-feed)
   - [Open the current user's profile](#open-the-current-users-profile)
-  - [Open the Playslists page](#open-the-playlists-page)
+  - [Open the Playlists page](#open-the-playlists-page)
+  - [Open the Offline playlist page](#open-the-offline-playlist-page)
+  - [Open the Watch Later page](#open-the-watch-later-page)
+  - [Open the Purchases page](#open-the-purchases-page)
   - [Open the Camera roll to start the upload flow](#open-the-camera-roll-to-start-the-upload-flow)
 
 ## Getting Started
@@ -104,6 +108,16 @@ You must provide a channel uri to this method. You can find a channel's uri by m
 
 `boolean handled = VimeoDeeplink.showChannelWithUri(Context context, String channelUri)`
 
+### View an On Demand film or series in the Vimeo app
+
+You can check if this method is supported on the installed Vimeo version using the call:
+
+`boolean supported = VimeoDeeplink.canHandleOnDemandDeeplink(Context context)`
+
+You must provide an ondemand uri to this method.
+
+`boolean handled = VimeoDeeplink.showOnDemandTitleWithUri(Context context, String ondemandUri)`
+
 ### Open the All Categories page
 `boolean handled = VimeoDeeplink.showCategories(Context context)`
 
@@ -118,6 +132,15 @@ You must provide a channel uri to this method. You can find a channel's uri by m
 
 ### Open the Playlists page
 `boolean handled = VimeoDeeplink.showPlaylists(Context context)`
+
+### Open the Offline playlist page
+`boolean handled = VimeoDeeplink.showOffline(Context context)`
+
+### Open the Watch Later page
+`boolean handled = VimeoDeeplink.showWatchLater(Context context)`
+
+### Open the Purchases page
+`boolean handled = VimeoDeeplink.showPurchases(Context context)`
 
 ### Open the Camera roll to start the upload flow
 `boolean handled = VimeoDeeplink.showUpload(Context context)`

@@ -12,6 +12,7 @@
     <string name="activity_main_type_category">Category</string>
     <string name="activity_main_type_channel">Channel</string>
     <string name="activity_main_type_user">User</string>
+    <string name="activity_main_type_vod">VOD</string>
     <string name="activity_main_type_url">Custom URL</string>
     <string name="activity_main_type_video">Video</string>
     <string name="activity_main_categories">Show Categories</string>
@@ -20,5 +21,8 @@
     <string name="activity_main_me">Show My Profile</string>
     <string name="activity_main_playlists">Show Playlists</string>
     <string name="activity_main_upload">Show Upload</string>
+    <string name="activity_main_offline">Show Offline</string>
+    <string name="activity_main_watchlater">Show Watch Later</string>
+    <string name="activity_main_purchases">Show Purchases</string>
     <string name="activity_main_deeplink_failure">Could not perform the following deep link!</string>
 </resources>
