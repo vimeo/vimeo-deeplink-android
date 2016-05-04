@@ -19,6 +19,9 @@ A helper library to deep link into the official Vimeo Android App.
   - [Open the Feed](#open-the-feed)
   - [Open the current user's profile](#open-the-current-users-profile)
   - [Open the Playlists page](#open-the-playlists-page)
+  - [Open the Offline playlist page](#open-the-offline-playlist-page)
+  - [Open the Watch Later page](#open-the-watch-later-page)
+  - [Open the Purchases page](#open-the-purchases-page)
   - [Open the Camera roll to start the upload flow](#open-the-camera-roll-to-start-the-upload-flow)
 
 ## Getting Started
