@@ -45,6 +45,7 @@ public class VimeoDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_FEED = 74;
     private static final int VERSION_CODE_DEEP_LINK_ME = 74;
     private static final int VERSION_CODE_DEEP_LINK_OFFLINE = 470;
+    private static final int VERSION_CODE_DEEP_LINK_ONDEMAND = 470;
     private static final int VERSION_CODE_DEEP_LINK_PLAYLISTS = 74;
     private static final int VERSION_CODE_DEEP_LINK_PURCHASES = 470;
     private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
@@ -72,6 +73,7 @@ public class VimeoDeeplink {
     public static final String VIMEO_USER_URI_PREFIX = "/users/";
     public static final String VIMEO_CATEGORY_URI_PREFIX = "/categories/";
     public static final String VIMEO_CHANNEL_URI_PREFIX = "/channels/";
+    public static final String VIMEO_ONDEMAND_URI_PREFIX = "/ondemand/";
 
 
     /**
@@ -231,6 +233,34 @@ public class VimeoDeeplink {
     public static boolean showUserWithUri(final Context context, final String userUriPath) {
         if (userUriPath.startsWith(VIMEO_USER_URI_PREFIX) && canHandleUserDeeplink(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + userUriPath));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle an ondemand deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle an ondemand deep link
+     */
+    public static boolean canHandleOnDemandDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ONDEMAND ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo app for the specified ondemand uri, this may link to the video player or an ondemand
+     * container, in the case for series
+     *
+     * @param context
+     * @param ondemandUriPath this path should be in the format "/ondemand/{param}"
+     * @return true if the param videoUriPath is correct and the Vimeo app can handle the ondemand deep link;
+     * false otherwise
+     */
+    public static boolean showOnDemandWithUri(final Context context, final String ondemandUriPath) {
+        if (ondemandUriPath.startsWith(VIMEO_ONDEMAND_URI_PREFIX) && canHandleOnDemandDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + ondemandUriPath));
             return startActivity(context, intent);
         }
         return false;

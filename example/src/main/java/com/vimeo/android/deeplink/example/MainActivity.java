@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String DEFAULT_USER_URI_PATH = "staff";
     private static final String DEFAULT_VIDEO_URI_PATH = "149058362";
     private static final String DEFAULT_VIDEO_URL = "http://www.vimeo.com/148943792";
+    private static final String DEFAULT_VOD_URI_PATH = "lonelyandhorny";
 
     public enum DeepLinkType {
         NONE,
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         CHANNEL,
         URL,
         USER,
-        VIDEO
+        VIDEO,
+        VOD
     }
 
     private Button mGoButton;
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.activity_main_video_radiobutton:
                             mDeepLinkType = DeepLinkType.VIDEO;
+                            break;
+                        case R.id.activity_main_vod_radiobutton:
+                            mDeepLinkType = DeepLinkType.VOD;
                             break;
                         default:
                             mDeepLinkType = DeepLinkType.NONE;
@@ -116,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         channelRadioButton.setEnabled(VimeoDeeplink.canHandleChannelDeeplink(this));
         RadioButton urlRadioButton = (RadioButton) findViewById(R.id.activity_main_url_radiobutton);
         urlRadioButton.setEnabled(VimeoDeeplink.canHandleUrl(this, DEFAULT_VIDEO_URL));
+        RadioButton vodRadioButton = (RadioButton) findViewById(R.id.activity_main_vod_radiobutton);
+        vodRadioButton.setEnabled(VimeoDeeplink.canHandleOnDemandDeeplink(this));
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.activity_main_radiogroup);
         radioGroup.setOnCheckedChangeListener(mCheckedChangeListener);
@@ -223,6 +230,8 @@ public class MainActivity extends AppCompatActivity {
                 return DEFAULT_USER_URI_PATH;
             case VIDEO:
                 return DEFAULT_VIDEO_URI_PATH;
+            case VOD:
+                return DEFAULT_VOD_URI_PATH;
             case NONE:
                 break;
         }
@@ -252,6 +261,9 @@ public class MainActivity extends AppCompatActivity {
                 uri = VimeoDeeplink.VIMEO_VIDEO_URI_PREFIX + uriPath;
                 handled = VimeoDeeplink.showVideoWithUri(this, uri);
                 break;
+            case VOD:
+                uri = VimeoDeeplink.VIMEO_ONDEMAND_URI_PREFIX + uriPath;
+                handled = VimeoDeeplink.showOnDemandWithUri(this, uri);
             case NONE:
                 break;
         }

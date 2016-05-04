@@ -12,6 +12,7 @@
     <string name="activity_main_type_category">Category</string>
     <string name="activity_main_type_channel">Channel</string>
     <string name="activity_main_type_user">User</string>
+    <string name="activity_main_type_vod">VOD</string>
     <string name="activity_main_type_url">Custom URL</string>
     <string name="activity_main_type_video">Video</string>
     <string name="activity_main_categories">Show Categories</string>

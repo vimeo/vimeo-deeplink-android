@@ -14,6 +14,7 @@ A helper library to deep link into the official Vimeo Android App.
   - [View a user profile in the Vimeo app](#view-a-user-in-the-vimeo-app)
   - [View a category in the Vimeo app](#view-a-category-in-the-vimeo-app)
   - [View a channel in the Vimeo app](#view-a-channel-in-the-vimeo-app)
+  - [View an On Demand film or series in the Vimeo app](#view-an-on-demand-film-or-series-in-the-vimeo-app)
   - [Open the All Categories page](#open-the-all-categories-page)
   - [Open the Explore page](#open-the-explore-page)
   - [Open the Feed](#open-the-feed)
@@ -106,6 +107,15 @@ You can check if this method is supported on the installed Vimeo version using t
 You must provide a channel uri to this method. You can find a channel's uri by making an API call to our [channel endpoints](https://developer.vimeo.com/api/endpoints/channels#/{channel_id}).
 
 `boolean handled = VimeoDeeplink.showChannelWithUri(Context context, String channelUri)`
+
+### View an On Demand film or series in the Vimeo app
+
+You can check if this method is supported on the installed Vimeo version using the call:
+
+`boolean supported = VimeoDeeplink.canHandleOnDemandDeeplink(Context context)`
+
+You must provide an ondemand uri to this method.
+`boolean handled = VimeoDeeplink.showOnDemandWithUri(Context context, String ondemandUri)`
 
 ### Open the All Categories page
 `boolean handled = VimeoDeeplink.showCategories(Context context)`
