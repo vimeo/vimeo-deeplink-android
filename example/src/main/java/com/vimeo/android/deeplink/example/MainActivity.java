@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case VOD:
                 uri = VimeoDeeplink.VIMEO_ONDEMAND_URI_PREFIX + uriPath;
-                handled = VimeoDeeplink.showOnDemandWithUri(this, uri);
+                handled = VimeoDeeplink.showOnDemandTitleWithUri(this, uri);
             case NONE:
                 break;
         }
