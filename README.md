@@ -31,7 +31,7 @@ For a more in depth look at the usage, refer to the [example Android app](exampl
 ### Gradle
 Specify the dependency in your `build.gradle` file (make sure `jcenter()` is included as a repository)
 ```groovy
-compile 'com.vimeo.android.deeplink:vimeo-deeplink:1.0.0'
+compile 'com.vimeo.android.deeplink:vimeo-deeplink:1.1.0'
 ```
 
 ### Submodule
