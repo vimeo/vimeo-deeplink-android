@@ -44,6 +44,8 @@ public class VimeoDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_EXPLORE = 74;
     private static final int VERSION_CODE_DEEP_LINK_FEED = 74;
     private static final int VERSION_CODE_DEEP_LINK_ME = 74;
+    private static final int VERSION_CODE_DEEP_LINK_NOTIFICATIONS = 1202;
+    private static final int VERSION_CODE_DEEP_LINK_NOTIFICATION_SETTINGS = 1202;
     private static final int VERSION_CODE_DEEP_LINK_OFFLINE = 470;
     private static final int VERSION_CODE_DEEP_LINK_ONDEMAND = 470;
     private static final int VERSION_CODE_DEEP_LINK_PLAYLISTS = 74;
@@ -63,6 +65,8 @@ public class VimeoDeeplink {
     private static final String EXPLORE = "/explore";
     private static final String FEED = "/feed";
     private static final String ME = "/me";
+    private static final String NOTIFICATIONS = "/notifications";
+    private static final String NOTIFICATION_SETTINGS = "/settings/notifications";
     private static final String OFFLINE = "/offline";
     private static final String PLAYLISTS = "/playlists";
     private static final String PURCHASES = "/purchases";
@@ -363,6 +367,56 @@ public class VimeoDeeplink {
      */
     public static boolean canHandleMeDeeplink(final Context context) {
         return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ME ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo App to the Notifications screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Notifications deeplink
+     */
+    public static boolean showNotifications(final Context context) {
+        if (canHandleNotificationsDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + NOTIFICATIONS));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a Notifications deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a Notifications deep link
+     */
+    public static boolean canHandleNotificationsDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_NOTIFICATIONS ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo App to the Push Notifications Settings screen
+     *
+     * @param context
+     * @return true if the Vimeo app opens the Push Notifications Settings deeplink
+     */
+    public static boolean showPushNotificationSettings(final Context context) {
+        if (canHandlePushNotificationSettingsDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + NOTIFICATION_SETTINGS));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a Push-Notification-Settings deep link
+     *
+     * @param context
+     * @return true if the Vimeo app is installed and it can handle a Push-Notification-Settings deep link
+     */
+    public static boolean canHandlePushNotificationSettingsDeeplink(final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_NOTIFICATION_SETTINGS ||
                vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
