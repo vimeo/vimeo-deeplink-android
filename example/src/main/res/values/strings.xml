@@ -3,7 +3,10 @@
 
     <string name="activity_main_static">Static Helpers</string>
     <string name="activity_main_dynamic">Dynamic Helpers</string>
-    <string name="activity_main_instructions">Select the type of deep link you wish to perform. If you know a URI Path for the type of deep link you wish to perform, you may enter it. By leaving it blank, a default URI Path will be used. Hit the GO button once ready!</string>
+    <string name="activity_main_instructions">Select the type of deep link you wish to perform. If
+        you know a URI Path for the type of deep link you wish to perform, you may enter it. By
+        leaving it blank, a default URI Path will be used. Hit the GO button once ready!
+    </string>
     <string name="activity_main_go">GO!</string>
     <string name="activity_main_launch">Launch Vimeo</string>
     <string name="activity_main_playstore">View in Play Store</string>
@@ -19,10 +22,13 @@
     <string name="activity_main_explore">Show Explore</string>
     <string name="activity_main_feed">Show Feed</string>
     <string name="activity_main_me">Show My Profile</string>
+    <string name="activity_main_notifications">Show Notifications</string>
+    <string name="activity_main_notification_settings">Show Push Notification Settings</string>
     <string name="activity_main_playlists">Show Playlists</string>
     <string name="activity_main_upload">Show Upload</string>
     <string name="activity_main_offline">Show Offline</string>
     <string name="activity_main_watchlater">Show Watch Later</string>
     <string name="activity_main_purchases">Show Purchases</string>
-    <string name="activity_main_deeplink_failure">Could not perform the following deep link!</string>
+    <string name="activity_main_deeplink_failure">Could not perform the following deep link!
+    </string>
 </resources>
