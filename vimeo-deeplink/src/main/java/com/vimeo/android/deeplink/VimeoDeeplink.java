@@ -32,7 +32,7 @@ import android.support.annotation.Nullable;
 
 /**
  * This is a utility class to help facilitate deep linking into the Vimeo Android application
- * <p/>
+ * <p>
  * Created by zetterstromk on 8/28/15.
  */
 public final class VimeoDeeplink {
