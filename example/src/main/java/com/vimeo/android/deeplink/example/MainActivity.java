@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mUriEditText;
     private DeepLinkType mDeepLinkType = DeepLinkType.NONE;
 
-    private RadioGroup.OnCheckedChangeListener mCheckedChangeListener =
+    private final RadioGroup.OnCheckedChangeListener mCheckedChangeListener =
             new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-    private View.OnClickListener mGoClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mGoClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (mDeepLinkType == DeepLinkType.NONE) {
@@ -174,6 +174,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 VimeoDeeplink.showMyProfile(MainActivity.this);
+            }
+        });
+        Button notificationsButton = (Button) findViewById(R.id.activity_main_notification_button);
+        notificationsButton.setEnabled(VimeoDeeplink.canHandleNotificationsDeeplink(MainActivity.this));
+        notificationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VimeoDeeplink.showNotifications(MainActivity.this);
+            }
+        });
+        Button notificationSettingsButton =
+                (Button) findViewById(R.id.activity_main_notification_settings_button);
+        notificationSettingsButton.setEnabled(
+                VimeoDeeplink.canHandlePushNotificationSettingsDeeplink(MainActivity.this));
+        notificationSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VimeoDeeplink.showPushNotificationSettings(MainActivity.this);
             }
         });
         Button playlistsButton = (Button) findViewById(R.id.activity_main_playlists_button);

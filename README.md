@@ -57,6 +57,8 @@ Currently supported paths are:
 * `vimeo://app.vimeo.com/explore`
 * `vimeo://app.vimeo.com/feed`
 * `vimeo://app.vimeo.com/me`
+* `vimeo://app.vimeo.com/notifications`
+* `vimeo://app.vimeo.com/settings/notifications`
 * `vimeo://app.vimeo.com/playlists`
 * `vimeo://app.vimeo.com/upload`
 
