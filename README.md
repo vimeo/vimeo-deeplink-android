@@ -21,6 +21,7 @@ A helper library to deep link into the official Vimeo Android App.
   - [Open the current user's profile](#open-the-current-users-profile)
   - [Open the Playlists page](#open-the-playlists-page)
   - [Open the Offline playlist page](#open-the-offline-playlist-page)
+  - [Open the Notifications page](#open-the-notifications-page)
   - [Open the Watch Later page](#open-the-watch-later-page)
   - [Open the Purchases page](#open-the-purchases-page)
   - [Open the Camera roll to start the upload flow](#open-the-camera-roll-to-start-the-upload-flow)
@@ -59,7 +60,9 @@ Currently supported paths are:
 * `vimeo://app.vimeo.com/me`
 * `vimeo://app.vimeo.com/notifications`
 * `vimeo://app.vimeo.com/settings/notifications`
+* `vimeo://app.vimeo.com/offline`
 * `vimeo://app.vimeo.com/playlists`
+* `vimeo://app.vimeo.com/purchases`
 * `vimeo://app.vimeo.com/upload`
 
 ### Open app in the Google Play store
@@ -137,6 +140,9 @@ You must provide an ondemand uri to this method.
 
 ### Open the Offline playlist page
 `boolean handled = VimeoDeeplink.showOffline(Context context)`
+
+### Open the Notifications page
+`boolean handled = VimeoDeeplink.showNotifications(Context context)`
 
 ### Open the Watch Later page
 `boolean handled = VimeoDeeplink.showWatchLater(Context context)`
