@@ -1,5 +1,7 @@
 # vimeo-deeplink-android
-A helper library to deep link into the official Vimeo Android App.
+A helper library to deep link into the official Vimeo Android Mobile App. 
+
+**Note** - the Vimeo Android TV application does not have support for deep linking. This library is intended to aid in deep linking to the mobile phone and tablet application only.
 
 
 ## Contents
