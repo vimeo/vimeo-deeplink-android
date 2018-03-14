@@ -202,6 +202,14 @@ public class MainActivity extends AppCompatActivity {
                 VimeoDeeplink.showPlaylists(MainActivity.this);
             }
         });
+        Button upgradeButton = (Button) findViewById(R.id.activity_main_upgrade_button);
+        upgradeButton.setEnabled(VimeoDeeplink.canHandleUpgradeDeeplink(MainActivity.this));
+        upgradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VimeoDeeplink.showUpgrade(MainActivity.this);
+            }
+        });
         Button uploadButton = (Button) findViewById(R.id.activity_main_upload_button);
         uploadButton.setEnabled(VimeoDeeplink.canHandleUploadDeeplink(MainActivity.this));
         uploadButton.setOnClickListener(new View.OnClickListener() {

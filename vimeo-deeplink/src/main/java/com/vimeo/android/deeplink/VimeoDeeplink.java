@@ -52,6 +52,7 @@ public final class VimeoDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_ONDEMAND = 470;
     private static final int VERSION_CODE_DEEP_LINK_PLAYLISTS = 74;
     private static final int VERSION_CODE_DEEP_LINK_PURCHASES = 470;
+    private static final int VERSION_CODE_DEEP_LINK_UPGRADE = 2260;
     private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
     private static final int VERSION_CODE_DEEP_LINK_URL = 234;
     private static final int VERSION_CODE_DEEP_LINK_WATCHLATER = 470;
@@ -72,6 +73,7 @@ public final class VimeoDeeplink {
     private static final String OFFLINE = "/offline";
     private static final String PLAYLISTS = "/playlists";
     private static final String PURCHASES = "/purchases";
+    private static final String UPGRADE = "/upgrade";
     private static final String UPLOAD = "/upload";
     private static final String WATCH_LATER = "/watchlater";
 
@@ -498,6 +500,31 @@ public final class VimeoDeeplink {
      */
     public static boolean canHandlePurchaseDeeplink(@NonNull final Context context) {
         return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PURCHASES ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo App to the Upgrade screen
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app opens the Upgrade deeplink
+     */
+    public static boolean showUpgrade(@NonNull final Context context) {
+        if (canHandleUpgradeDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + UPGRADE));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a upgrade deep link
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app is installed and it can handle a upgrade deep link
+     */
+    public static boolean canHandleUpgradeDeeplink(@NonNull final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPGRADE ||
                vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 

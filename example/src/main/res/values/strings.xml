@@ -25,6 +25,7 @@
     <string name="activity_main_notifications">Show Notifications</string>
     <string name="activity_main_notification_settings">Show Push Notification Settings</string>
     <string name="activity_main_playlists">Show Playlists</string>
+    <string name="activity_main_upgrade">Show Upgrade</string>
     <string name="activity_main_upload">Show Upload</string>
     <string name="activity_main_offline">Show Offline</string>
     <string name="activity_main_watchlater">Show Watch Later</string>
