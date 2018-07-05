@@ -242,15 +242,6 @@ public class MainActivity extends AppCompatActivity {
                 VimeoDeeplink.showPurchases(MainActivity.this);
             }
         });
-
-        Button videoManagerButton = (Button) findViewById(R.id.activity_main_video_manager_button);
-        videoManagerButton.setEnabled(VimeoDeeplink.canHandleVideoManagerDeeplink(MainActivity.this));
-        videoManagerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showVideoManager(MainActivity.this);
-            }
-        });
     }
 
     private String generatedUriPath() {
