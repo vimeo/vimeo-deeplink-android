@@ -55,6 +55,7 @@ public final class VimeoDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_UPGRADE = 2260;
     private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
     private static final int VERSION_CODE_DEEP_LINK_URL = 234;
+    private static final int VERSION_CODE_DEEP_LINK_VIDEO_MANAGER = 2340;
     private static final int VERSION_CODE_DEEP_LINK_WATCHLATER = 470;
 
     private static final String VIMEO_BASE_URL_HOST = "vimeo.com";
@@ -75,6 +76,7 @@ public final class VimeoDeeplink {
     private static final String PURCHASES = "/purchases";
     private static final String UPGRADE = "/upgrade";
     private static final String UPLOAD = "/upload";
+    private static final String VIDEO_MANAGER = "/manage/videos";
     private static final String WATCH_LATER = "/watchlater";
 
     public static final String VIMEO_VIDEO_URI_PREFIX = "/videos/";
@@ -550,6 +552,31 @@ public final class VimeoDeeplink {
      */
     public static boolean canHandleUploadDeeplink(@NonNull final Context context) {
         return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPLOAD ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+    }
+
+    /**
+     * Open the Vimeo App to the Video Manager screen
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app opens the Video Manager deeplink
+     */
+    public static boolean showVideoManager(@NonNull final Context context) {
+        if (canHandleVideoManagerDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + VIDEO_MANAGER));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the user's Vimeo app can handle a video manager deep link
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app is installed and it can handle a video manager deep link
+     */
+    public static boolean canHandleVideoManagerDeeplink(@NonNull final Context context) {
+        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_VIDEO_MANAGER ||
                vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
 
