@@ -30,6 +30,7 @@
     <string name="activity_main_offline">Show Offline</string>
     <string name="activity_main_watchlater">Show Watch Later</string>
     <string name="activity_main_purchases">Show Purchases</string>
+    <string name="activity_main_video_manager">Show Video Manager</string>
     <string name="activity_main_deeplink_failure">Could not perform the following deep link!
     </string>
 </resources>

@@ -230,6 +230,16 @@
                     android:minWidth="@dimen/material_button_min_width"
                     android:text="@string/activity_main_upgrade"/>
             </TableRow>
+            <TableRow>
+
+                <Button
+                    android:id="@+id/activity_main_video_manager_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/material_button_min_width"
+                    android:text="@string/activity_main_video_manager"/>
+
+            </TableRow>
         </TableLayout>
 
     </RelativeLayout>
