@@ -56,6 +56,7 @@ public final class VimeoDeeplink {
     private static final int VERSION_CODE_DEEP_LINK_UPLOAD = 74;
     private static final int VERSION_CODE_DEEP_LINK_URL = 234;
     private static final int VERSION_CODE_DEEP_LINK_VIDEO_MANAGER = 2340;
+    private static final int VERSION_CODE_DEEP_LINK_ALBUMS = 2340;
     private static final int VERSION_CODE_DEEP_LINK_WATCHLATER = 470;
 
     private static final String VIMEO_BASE_URL_HOST = "vimeo.com";
@@ -84,6 +85,7 @@ public final class VimeoDeeplink {
     public static final String VIMEO_CATEGORY_URI_PREFIX = "/categories/";
     public static final String VIMEO_CHANNEL_URI_PREFIX = "/channels/";
     public static final String VIMEO_ONDEMAND_URI_PREFIX = "/ondemand/";
+    public static final String VIMEO_ALBUMS_URI_POSTFIX = "/albums";
 
 
     /**
@@ -579,6 +581,27 @@ public final class VimeoDeeplink {
         return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_VIDEO_MANAGER ||
                vimeoAppVersion(context) == VERSION_CODE_DEBUG;
     }
+
+    /**
+     * Determine if the user's Vimeo app can handle a album deep link
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app is installed and it can handle an albums deep link
+     */
+    public static boolean canHandleAlbumsDeeplink(@NonNull final Context context, String uri) {
+        return (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ALBUMS ||
+               vimeoAppVersion(context) == VERSION_CODE_DEBUG) && uri.endsWith(VIMEO_ALBUMS_URI_POSTFIX);
+    }
+
+    public static boolean showAlbums(@NonNull final Context context, String uri) {
+        if (canHandleAlbumsDeeplink(context, uri)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + uri));
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
+
 
     /**
      * Open the Vimeo App to the Watch Later screen

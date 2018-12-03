@@ -23,6 +23,7 @@
 package com.vimeo.android.deeplink.example;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String DEFAULT_USER_URI_PATH = "staff";
     private static final String DEFAULT_VIDEO_URI_PATH = "149058362";
     private static final String DEFAULT_VIDEO_URL = "http://www.vimeo.com/148943792";
+    private static final String DEFAULT_ALBUM_URI_PATH = "/me/albums";
     private static final String DEFAULT_VOD_URI_PATH = "lonelyandhorny";
 
     public enum DeepLinkType {
@@ -49,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
         URL,
         USER,
         VIDEO,
-        VOD
+        VOD,
+        ALBUM
     }
 
     private Button mGoButton;
     private EditText mUriEditText;
+    private EditText mUserIdForAlbumEditText;
     private DeepLinkType mDeepLinkType = DeepLinkType.NONE;
 
     private final RadioGroup.OnCheckedChangeListener mCheckedChangeListener =
@@ -108,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mGoButton = (Button) findViewById(R.id.activity_main_go_button);
         mUriEditText = (EditText) findViewById(R.id.activity_main_edittext);
 
         RadioButton videoRadioButton = (RadioButton) findViewById(R.id.activity_main_video_radiobutton);
@@ -127,130 +130,184 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.activity_main_radiogroup);
         radioGroup.setOnCheckedChangeListener(mCheckedChangeListener);
 
-        mGoButton.setEnabled(VimeoDeeplink.isVimeoAppInstalled(this));
-        mGoButton.setOnClickListener(mGoClickListener);
+        mGoButton = configureButton(R.id.activity_main_go_button,
+                                    VimeoDeeplink.isVimeoAppInstalled(this),
+                                    mGoClickListener);
 
-        Button launchButton = (Button) findViewById(R.id.activity_main_launch_button);
-        launchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.openVimeoApp(MainActivity.this);
-            }
-        });
-        Button playstoreButton = (Button) findViewById(R.id.activity_main_playstore_button);
-        playstoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.viewVimeoAppInAppStore(MainActivity.this);
-            }
-        });
-        Button categoriesButton = (Button) findViewById(R.id.activity_main_categories_button);
-        categoriesButton.setEnabled(VimeoDeeplink.canHandleCategoiesDeeplink(MainActivity.this));
-        categoriesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showCategories(MainActivity.this);
-            }
-        });
-        Button exploreButton = (Button) findViewById(R.id.activity_main_explore_button);
-        exploreButton.setEnabled(VimeoDeeplink.canHandleExploreDeeplink(MainActivity.this));
-        exploreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showExplore(MainActivity.this);
-            }
-        });
-        Button feedButton = (Button) findViewById(R.id.activity_main_feed_button);
-        feedButton.setEnabled(VimeoDeeplink.canHandleFeedDeeplink(MainActivity.this));
-        feedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showFeed(MainActivity.this);
-            }
-        });
-        Button myProfileButton = (Button) findViewById(R.id.activity_main_me_button);
-        myProfileButton.setEnabled(VimeoDeeplink.canHandleMeDeeplink(MainActivity.this));
-        myProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showMyProfile(MainActivity.this);
-            }
-        });
-        Button notificationsButton = (Button) findViewById(R.id.activity_main_notification_button);
-        notificationsButton.setEnabled(VimeoDeeplink.canHandleNotificationsDeeplink(MainActivity.this));
-        notificationsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showNotifications(MainActivity.this);
-            }
-        });
-        Button notificationSettingsButton =
-                (Button) findViewById(R.id.activity_main_notification_settings_button);
-        notificationSettingsButton.setEnabled(
-                VimeoDeeplink.canHandlePushNotificationSettingsDeeplink(MainActivity.this));
-        notificationSettingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showPushNotificationSettings(MainActivity.this);
-            }
-        });
-        Button playlistsButton = (Button) findViewById(R.id.activity_main_playlists_button);
-        playlistsButton.setEnabled(VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this));
-        playlistsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showPlaylists(MainActivity.this);
-            }
-        });
-        Button upgradeButton = (Button) findViewById(R.id.activity_main_upgrade_button);
-        upgradeButton.setEnabled(VimeoDeeplink.canHandleUpgradeDeeplink(MainActivity.this));
-        upgradeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showUpgrade(MainActivity.this);
-            }
-        });
-        Button uploadButton = (Button) findViewById(R.id.activity_main_upload_button);
-        uploadButton.setEnabled(VimeoDeeplink.canHandleUploadDeeplink(MainActivity.this));
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showUpload(MainActivity.this);
-            }
-        });
-        Button offlineButton = (Button) findViewById(R.id.activity_main_offline_button);
-        offlineButton.setEnabled(VimeoDeeplink.canHandleOfflineDeeplink(MainActivity.this));
-        offlineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showOffline(MainActivity.this);
-            }
-        });
-        Button watchLaterButton = (Button) findViewById(R.id.activity_main_watchlater_button);
-        watchLaterButton.setEnabled(VimeoDeeplink.canHandleWatchLaterDeeplink(MainActivity.this));
-        watchLaterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showWatchLater(MainActivity.this);
-            }
-        });
-        Button purchasesButton = (Button) findViewById(R.id.activity_main_purchases_button);
-        purchasesButton.setEnabled(VimeoDeeplink.canHandlePurchaseDeeplink(MainActivity.this));
-        purchasesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showPurchases(MainActivity.this);
-            }
-        });
+        configureButton(R.id.activity_main_launch_button,
+                        true,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.openVimeoApp(MainActivity.this);
+                            }
+                        });
 
-        Button videoManagerButton = (Button) findViewById(R.id.activity_main_video_manager_button);
-        videoManagerButton.setEnabled(VimeoDeeplink.canHandleVideoManagerDeeplink(MainActivity.this));
-        videoManagerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VimeoDeeplink.showVideoManager(MainActivity.this);
-            }
-        });
+
+        configureButton(R.id.activity_main_playstore_button,
+                        true,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.viewVimeoAppInAppStore(MainActivity.this);
+                            }
+                        });
+
+
+        configureButton(R.id.activity_main_categories_button,
+                        VimeoDeeplink.canHandleCategoiesDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showCategories(MainActivity.this);
+                            }
+                        });
+
+
+        configureButton(R.id.activity_main_explore_button,
+                        VimeoDeeplink.canHandleExploreDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showExplore(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_feed_button,
+                        VimeoDeeplink.canHandleFeedDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showFeed(MainActivity.this);
+                            }
+                        });
+
+
+        configureButton(R.id.activity_main_me_button,
+                        VimeoDeeplink.canHandleMeDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showMyProfile(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_notification_button,
+                        VimeoDeeplink.canHandleNotificationsDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showNotifications(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_notification_settings_button,
+                        VimeoDeeplink.canHandlePushNotificationSettingsDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showPushNotificationSettings(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_playlists_button,
+                        VimeoDeeplink.canHandlePlaylistDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showPlaylists(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_upgrade_button,
+                        VimeoDeeplink.canHandleUpgradeDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showUpgrade(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_upload_button,
+                        VimeoDeeplink.canHandleUploadDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showUpload(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_offline_button,
+                        VimeoDeeplink.canHandleOfflineDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showOffline(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_watchlater_button,
+                        VimeoDeeplink.canHandleWatchLaterDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showWatchLater(MainActivity.this);
+                            }
+                        });
+
+
+        configureButton(R.id.activity_main_purchases_button,
+                        VimeoDeeplink.canHandlePurchaseDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showPurchases(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_video_manager_button,
+                        VimeoDeeplink.canHandleVideoManagerDeeplink(MainActivity.this),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showVideoManager(MainActivity.this);
+                            }
+                        });
+
+        configureButton(R.id.activity_main_albums_manager_button,
+                        VimeoDeeplink.canHandleAlbumsDeeplink(MainActivity.this, DEFAULT_ALBUM_URI_PATH),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showAlbums(MainActivity.this, DEFAULT_ALBUM_URI_PATH);
+                            }
+                        });
+        mUserIdForAlbumEditText = ((EditText) findViewById(R.id.activity_user_id_albums_edit_text));
+
+        configureButton(R.id.activity_main_albums_for_user_button,
+                        VimeoDeeplink.canHandleAlbumsDeeplink(MainActivity.this, getAlbumsForUserUri()),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showAlbums(MainActivity.this, getAlbumsForUserUri());
+                            }
+                        });
+    }
+
+    private String getAlbumsForUserUri() {
+        return VimeoDeeplink.VIMEO_USER_URI_PREFIX +
+               mUserIdForAlbumEditText.getText().toString() +
+               VimeoDeeplink.VIMEO_ALBUMS_URI_POSTFIX;
+    }
+
+
+    private Button configureButton(@IdRes int buttonId, boolean enabled, View.OnClickListener listener) {
+        Button button = (Button) findViewById(buttonId);
+        button.setEnabled(enabled);
+        if (enabled) {
+            button.setOnClickListener(listener);
+        }
+        return button;
     }
 
     private String generatedUriPath() {
@@ -267,6 +324,8 @@ public class MainActivity extends AppCompatActivity {
                 return DEFAULT_VIDEO_URI_PATH;
             case VOD:
                 return DEFAULT_VOD_URI_PATH;
+            case ALBUM:
+                return DEFAULT_ALBUM_URI_PATH;
             case NONE:
                 break;
         }
@@ -299,6 +358,10 @@ public class MainActivity extends AppCompatActivity {
             case VOD:
                 uri = VimeoDeeplink.VIMEO_ONDEMAND_URI_PREFIX + uriPath;
                 handled = VimeoDeeplink.showOnDemandTitleWithUri(this, uri);
+                break;
+            case ALBUM:
+                handled = VimeoDeeplink.showAlbums(this, uriPath);
+                break;
             case NONE:
                 break;
         }
