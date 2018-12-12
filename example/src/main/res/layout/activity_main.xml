@@ -1,8 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:text="@string/activity_main_dynamic"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
         <TextView
             android:id="@+id/activity_main_instructions_textview"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/activity_main_dynamic_textview"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/activity_main_instructions"/>
+            android:text="@string/activity_main_instructions" />
 
         <EditText
             android:id="@+id/activity_main_edittext"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/activity_main_instructions_textview"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/activity_main_uri_hint"/>
+            android:hint="@string/activity_main_uri_hint" />
 
         <RadioGroup
             android:id="@+id/activity_main_radiogroup"
@@ -48,42 +48,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/activity_main_type_video"/>
+                android:text="@string/activity_main_type_video" />
 
             <RadioButton
                 android:id="@+id/activity_main_category_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/activity_main_type_category"/>
+                android:text="@string/activity_main_type_category" />
 
             <RadioButton
                 android:id="@+id/activity_main_channel_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/activity_main_type_channel"/>
+                android:text="@string/activity_main_type_channel" />
 
             <RadioButton
                 android:id="@+id/activity_main_user_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/activity_main_type_user"/>
+                android:text="@string/activity_main_type_user" />
 
             <RadioButton
                 android:id="@+id/activity_main_vod_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/activity_main_type_vod"/>
+                android:text="@string/activity_main_type_vod" />
 
             <RadioButton
                 android:id="@+id/activity_main_url_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/activity_main_type_url"/>
+                android:text="@string/activity_main_type_url" />
         </RadioGroup>
 
         <Button
@@ -94,7 +94,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:minWidth="@dimen/material_button_min_width"
-            android:text="@string/activity_main_go"/>
+            android:text="@string/activity_main_go" />
 
         <TextView
             android:id="@+id/activity_main_static_textview"
@@ -103,144 +103,128 @@
             android:layout_below="@id/activity_main_go_button"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/activity_main_static"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
-        <TableLayout
-            android:id="@+id/activity_main_tablelayout"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/activity_main_static_textview"
-            android:stretchColumns="0,1">
+            android:orientation="vertical">
 
-            <TableRow>
+            <Button
+                android:id="@+id/activity_main_launch_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_launch" />
 
+            <Button
+                android:id="@+id/activity_main_playstore_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_playstore" />
+
+
+            <Button
+                android:id="@+id/activity_main_categories_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_categories" />
+
+            <Button
+                android:id="@+id/activity_main_explore_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_explore" />
+
+            <Button
+                android:id="@+id/activity_main_feed_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_feed" />
+
+            <Button
+                android:id="@+id/activity_main_me_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_me" />
+
+
+            <Button
+                android:id="@+id/activity_main_notification_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_notifications" />
+
+            <Button
+                android:id="@+id/activity_main_notification_settings_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_notification_settings" />
+
+            <Button
+                android:id="@+id/activity_main_playlists_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_playlists" />
+
+            <Button
+                android:id="@+id/activity_main_upload_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_upload" />
+
+            <Button
+                android:id="@+id/activity_main_offline_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_offline" />
+
+            <Button
+                android:id="@+id/activity_main_watchlater_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_watchlater" />
+
+            <Button
+                android:id="@+id/activity_main_purchases_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_purchases" />
+
+            <Button
+                android:id="@+id/activity_main_upgrade_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_upgrade" />
+
+            <Button
+                android:id="@+id/activity_main_video_manager_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_video_manager" />
+
+            <Button
+                android:id="@+id/activity_main_albums_manager_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_albums_manager" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/activity_user_id_albums_edit_text"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_main_default_user"/>
                 <Button
-                    android:id="@+id/activity_main_launch_button"
+                    android:id="@+id/activity_main_albums_for_user_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_launch"/>
+                    android:text="@string/activity_main_albums_for_user" />
+            </LinearLayout>
 
-                <Button
-                    android:id="@+id/activity_main_playstore_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_playstore"/>
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_categories_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_categories"/>
-
-                <Button
-                    android:id="@+id/activity_main_explore_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_explore"/>
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_feed_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_feed"/>
-
-                <Button
-                    android:id="@+id/activity_main_me_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_me"/>
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_notification_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_notifications"/>
-
-                <Button
-                    android:id="@+id/activity_main_notification_settings_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_notification_settings"/>
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_playlists_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_playlists"/>
-
-                <Button
-                    android:id="@+id/activity_main_upload_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_upload"/>
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_offline_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_offline"/>
-
-                <Button
-                    android:id="@+id/activity_main_watchlater_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_watchlater"/>
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_purchases_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_purchases"/>
-
-                <Button
-                    android:id="@+id/activity_main_upgrade_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_upgrade"/>
-            </TableRow>
-            <TableRow>
-
-                <Button
-                    android:id="@+id/activity_main_video_manager_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="@dimen/material_button_min_width"
-                    android:text="@string/activity_main_video_manager"/>
-
-            </TableRow>
-        </TableLayout>
-
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

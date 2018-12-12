@@ -16,6 +16,7 @@
     <string name="activity_main_type_channel">Channel</string>
     <string name="activity_main_type_user">User</string>
     <string name="activity_main_type_vod">VOD</string>
+    <string name="activity_main_type_albums">Albums</string>
     <string name="activity_main_type_url">Custom URL</string>
     <string name="activity_main_type_video">Video</string>
     <string name="activity_main_categories">Show Categories</string>
@@ -31,6 +32,9 @@
     <string name="activity_main_watchlater">Show Watch Later</string>
     <string name="activity_main_purchases">Show Purchases</string>
     <string name="activity_main_video_manager">Show Video Manager</string>
+    <string name="activity_main_default_user">ilindy</string>
+    <string name="activity_main_albums_for_user">Show Albums For User Id</string>
+    <string name="activity_main_albums_manager">Show Albums For Logged In User</string>
     <string name="activity_main_deeplink_failure">Could not perform the following deep link!
     </string>
 </resources>
