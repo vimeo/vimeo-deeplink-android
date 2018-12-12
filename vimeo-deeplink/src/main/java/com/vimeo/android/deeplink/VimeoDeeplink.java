@@ -86,6 +86,8 @@ public final class VimeoDeeplink {
     public static final String VIMEO_CHANNEL_URI_PREFIX = "/channels/";
     public static final String VIMEO_ONDEMAND_URI_PREFIX = "/ondemand/";
     public static final String VIMEO_ALBUMS_URI_POSTFIX = "/albums";
+    public static final String VIMEO_ALBUM_URI_PREFIX = "/album";
+    private static final String VIMEO_ALBUM_PATTERN = "^(" + VIMEO_ALBUM_URI_PREFIX + "/)[0-9]+$";
 
 
     /**
@@ -588,9 +590,14 @@ public final class VimeoDeeplink {
      * @param context an Android {@link Context}
      * @return true if the Vimeo app is installed and it can handle an albums deep link
      */
-    public static boolean canHandleAlbumsDeeplink(@NonNull final Context context, String uri) {
+    public static boolean canHandleAlbumsDeeplink(@NonNull final Context context, @NonNull String uri) {
         return (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ALBUMS ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG) && uri.endsWith(VIMEO_ALBUMS_URI_POSTFIX);
+                vimeoAppVersion(context) == VERSION_CODE_DEBUG) &&
+               isValidAlbumUri(uri);
+    }
+
+    public static boolean isValidAlbumUri(@NonNull final String uri) {
+        return uri.endsWith(VIMEO_ALBUMS_URI_POSTFIX) || uri.matches(VIMEO_ALBUM_PATTERN);
     }
 
     public static boolean showAlbums(@NonNull final Context context, String uri) {
@@ -600,7 +607,6 @@ public final class VimeoDeeplink {
         }
         return false;
     }
-
 
 
     /**

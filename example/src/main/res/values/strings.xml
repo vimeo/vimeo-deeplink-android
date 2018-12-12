@@ -35,6 +35,7 @@
     <string name="activity_main_default_user">ilindy</string>
     <string name="activity_main_albums_for_user">Show Albums For User Id</string>
     <string name="activity_main_albums_manager">Show Albums For Logged In User</string>
-    <string name="activity_main_deeplink_failure">Could not perform the following deep link!
-    </string>
+    <string name="activity_main_deeplink_failure">Could not perform the following deep link!</string>
+    <string name="activity_main_album_for_id">Show Album For Id</string>
+    <string name="activity_main_default_album_id">3576138</string>
 </resources>

@@ -225,6 +225,22 @@
                     android:text="@string/activity_main_albums_for_user" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/activity_user_id_album_edit_text"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_main_default_album_id"/>
+                <Button
+                    android:id="@+id/activity_main_album_by_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_main_album_for_id" />
+            </LinearLayout>
+
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

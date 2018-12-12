@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mGoButton;
     private EditText mUriEditText;
     private EditText mUserIdForAlbumEditText;
+    private EditText mIdForAlbumEditText;
     private DeepLinkType mDeepLinkType = DeepLinkType.NONE;
 
     private final RadioGroup.OnCheckedChangeListener mCheckedChangeListener =
@@ -292,12 +293,28 @@ public class MainActivity extends AppCompatActivity {
                                 VimeoDeeplink.showAlbums(MainActivity.this, getAlbumsForUserUri());
                             }
                         });
+
+        mIdForAlbumEditText = ((EditText) findViewById(R.id.activity_user_id_album_edit_text));
+
+        configureButton(R.id.activity_main_album_by_id,
+                        VimeoDeeplink.canHandleAlbumsDeeplink(MainActivity.this, getAlbumForId()),
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showAlbums(MainActivity.this, getAlbumForId());
+                            }
+                        });
     }
 
     private String getAlbumsForUserUri() {
         return VimeoDeeplink.VIMEO_USER_URI_PREFIX +
                mUserIdForAlbumEditText.getText().toString() +
                VimeoDeeplink.VIMEO_ALBUMS_URI_POSTFIX;
+    }
+
+    private String getAlbumForId() {
+        return VimeoDeeplink.VIMEO_ALBUM_URI_PREFIX + "/" +
+               mIdForAlbumEditText.getText().toString();
     }
 
 
