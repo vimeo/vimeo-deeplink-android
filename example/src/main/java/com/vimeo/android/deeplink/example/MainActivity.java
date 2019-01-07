@@ -112,22 +112,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mUriEditText = (EditText) findViewById(R.id.activity_main_edittext);
+        mUriEditText = findViewById(R.id.activity_main_edittext);
 
-        RadioButton videoRadioButton = (RadioButton) findViewById(R.id.activity_main_video_radiobutton);
+        RadioButton videoRadioButton = findViewById(R.id.activity_main_video_radiobutton);
         videoRadioButton.setEnabled(VimeoDeeplink.canHandleVideoDeeplink(this));
-        RadioButton userRadioButton = (RadioButton) findViewById(R.id.activity_main_user_radiobutton);
+        RadioButton userRadioButton = findViewById(R.id.activity_main_user_radiobutton);
         userRadioButton.setEnabled(VimeoDeeplink.canHandleUserDeeplink(this));
-        RadioButton categoryRadioButton = (RadioButton) findViewById(R.id.activity_main_category_radiobutton);
+        RadioButton categoryRadioButton = findViewById(R.id.activity_main_category_radiobutton);
         categoryRadioButton.setEnabled(VimeoDeeplink.canHandleCategoryDeeplink(this));
-        RadioButton channelRadioButton = (RadioButton) findViewById(R.id.activity_main_channel_radiobutton);
+        RadioButton channelRadioButton = findViewById(R.id.activity_main_channel_radiobutton);
         channelRadioButton.setEnabled(VimeoDeeplink.canHandleChannelDeeplink(this));
-        RadioButton urlRadioButton = (RadioButton) findViewById(R.id.activity_main_url_radiobutton);
+        RadioButton urlRadioButton = findViewById(R.id.activity_main_url_radiobutton);
         urlRadioButton.setEnabled(VimeoDeeplink.canHandleUrl(this, DEFAULT_VIDEO_URL));
-        RadioButton vodRadioButton = (RadioButton) findViewById(R.id.activity_main_vod_radiobutton);
+        RadioButton vodRadioButton = findViewById(R.id.activity_main_vod_radiobutton);
         vodRadioButton.setEnabled(VimeoDeeplink.canHandleOnDemandDeeplink(this));
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.activity_main_radiogroup);
+        RadioGroup radioGroup = findViewById(R.id.activity_main_radiogroup);
         radioGroup.setOnCheckedChangeListener(mCheckedChangeListener);
 
         mGoButton = configureButton(R.id.activity_main_go_button,
@@ -246,6 +246,15 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
+      configureButton(R.id.activity_main_offline_uri_button,
+                      VimeoDeeplink.canHandleOfflineDeeplink(MainActivity.this),
+                      new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                          VimeoDeeplink.showOfflineWithUri(MainActivity.this);
+                        }
+                      });
+
         configureButton(R.id.activity_main_watchlater_button,
                         VimeoDeeplink.canHandleWatchLaterDeeplink(MainActivity.this),
                         new View.OnClickListener() {
@@ -282,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                                 VimeoDeeplink.showAlbums(MainActivity.this, DEFAULT_ALBUM_URI_PATH);
                             }
                         });
-        mUserIdForAlbumEditText = ((EditText) findViewById(R.id.activity_user_id_albums_edit_text));
+        mUserIdForAlbumEditText = findViewById(R.id.activity_user_id_albums_edit_text);
 
         configureButton(R.id.activity_main_albums_for_user_button,
                         VimeoDeeplink.canHandleAlbumsDeeplink(MainActivity.this, getAlbumsForUserUri()),
@@ -302,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Button configureButton(@IdRes int buttonId, boolean enabled, View.OnClickListener listener) {
-        Button button = (Button) findViewById(buttonId);
+        Button button = findViewById(buttonId);
         button.setEnabled(enabled);
         if (enabled) {
             button.setOnClickListener(listener);

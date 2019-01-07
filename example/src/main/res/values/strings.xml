@@ -29,6 +29,7 @@
     <string name="activity_main_upgrade">Show Upgrade</string>
     <string name="activity_main_upload">Show Upload</string>
     <string name="activity_main_offline">Show Offline</string>
+    <string name="activity_main_offline_uri">Show Offline W/ Uri</string>
     <string name="activity_main_watchlater">Show Watch Later</string>
     <string name="activity_main_purchases">Show Purchases</string>
     <string name="activity_main_video_manager">Show Video Manager</string>

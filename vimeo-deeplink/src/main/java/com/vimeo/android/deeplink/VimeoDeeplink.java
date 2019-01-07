@@ -446,6 +446,19 @@ public final class VimeoDeeplink {
         return false;
     }
 
+    public static boolean showOfflineWithUri(@NonNull final Context context) {
+        if (canHandleOfflineDeeplink(context)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + OFFLINE)
+                    .buildUpon()
+                    .appendQueryParameter("uri", "https://www.catfacts.co")
+                    .appendQueryParameter("resource_key", "1234")
+                    .appendQueryParameter("actions", "download")
+                    .build());
+            return startActivity(context, intent);
+        }
+        return false;
+    }
+
     /**
      * Determine if the user's Vimeo app can handle a offline deep link
      *
