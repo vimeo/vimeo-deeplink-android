@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="material_button_min_width">88dp</dimen>
+    <dimen name="item_separator_margin">12dp</dimen>
 </resources>
