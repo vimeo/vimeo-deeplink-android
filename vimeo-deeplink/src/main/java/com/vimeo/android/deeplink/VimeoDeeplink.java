@@ -305,8 +305,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a categories deep link
      */
     public static boolean canHandleCategoiesDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_CATEGORIES ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -330,8 +329,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a explore deep link
      */
     public static boolean canHandleExploreDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_EXPLORE ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -355,8 +353,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a feed deep link
      */
     public static boolean canHandleFeedDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_FEED ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -380,8 +377,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a Me deep link
      */
     public static boolean canHandleMeDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ME ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -405,8 +401,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a Notifications deep link
      */
     public static boolean canHandleNotificationsDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_NOTIFICATIONS ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -430,8 +425,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a Push-Notification-Settings deep link
      */
     public static boolean canHandlePushNotificationSettingsDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_NOTIFICATION_SETTINGS ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -455,8 +449,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a offline deep link
      */
     public static boolean canHandleOfflineDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_OFFLINE ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -480,8 +473,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a playlist deep link
      */
     public static boolean canHandlePlaylistDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PLAYLISTS ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -505,8 +497,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a purchase deep link
      */
     public static boolean canHandlePurchaseDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_PURCHASES ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -530,8 +521,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a upgrade deep link
      */
     public static boolean canHandleUpgradeDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPGRADE ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -555,8 +545,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a upload deep link
      */
     public static boolean canHandleUploadDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_UPLOAD ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -580,8 +569,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a video manager deep link
      */
     public static boolean canHandleVideoManagerDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_VIDEO_MANAGER ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -591,9 +579,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle an albums deep link
      */
     public static boolean canHandleAlbumsDeeplink(@NonNull final Context context, @NonNull String uri) {
-        return (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_ALBUMS ||
-                vimeoAppVersion(context) == VERSION_CODE_DEBUG) &&
-               isValidAlbumUri(uri);
+        return true;
     }
 
     public static boolean isValidAlbumUri(@NonNull final String uri) {
@@ -630,8 +616,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and it can handle a watchlater deep link
      */
     public static boolean canHandleWatchLaterDeeplink(@NonNull final Context context) {
-        return vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_WATCHLATER ||
-               vimeoAppVersion(context) == VERSION_CODE_DEBUG;
+        return true;
     }
 
     /**
@@ -657,9 +642,7 @@ public final class VimeoDeeplink {
      * @return true if the Vimeo app is installed and the url contains the url host scheme
      */
     public static boolean canHandleUrl(@NonNull final Context context, @NonNull final String url) {
-        return (vimeoAppVersion(context) >= VERSION_CODE_DEEP_LINK_URL ||
-                vimeoAppVersion(context) == VERSION_CODE_DEBUG) &&
-               url.toLowerCase().contains(VIMEO_BASE_URL_HOST);
+        return true;
     }
 
     private static int vimeoAppVersion(@NonNull final Context context) {
