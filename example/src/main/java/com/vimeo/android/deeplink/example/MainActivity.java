@@ -166,13 +166,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         configureButton(R.id.activity_main_explore_button,
-                        VimeoDeeplink.canHandleExploreDeeplink(MainActivity.this),
+                                           VimeoDeeplink.canHandleExploreDeeplink(MainActivity.this),
+                                           new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+                                                   VimeoDeeplink.showExplore(MainActivity.this);
+                                               }
+                                           });
+
+        configureButton(R.id.activity_main_watch_button,
+                        true,
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                VimeoDeeplink.showExplore(MainActivity.this);
+                                VimeoDeeplink.showWatch(MainActivity.this);
                             }
                         });
+
+        configureButton(R.id.activity_main_account_button,
+                        true,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                VimeoDeeplink.showAccount(MainActivity.this);
+                            }
+                        });
+
 
         configureButton(R.id.activity_main_feed_button,
                         VimeoDeeplink.canHandleFeedDeeplink(MainActivity.this),

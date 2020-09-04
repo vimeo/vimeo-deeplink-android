@@ -21,6 +21,8 @@
     <string name="activity_main_type_video">Video</string>
     <string name="activity_main_categories">Show Categories</string>
     <string name="activity_main_explore">Show Explore</string>
+    <string name="activity_main_watch">Show Watch</string>
+    <string name="activity_main_account">Show Account</string>
     <string name="activity_main_feed">Show Feed</string>
     <string name="activity_main_me">Show My Profile</string>
     <string name="activity_main_notifications">Show Notifications</string>

@@ -68,6 +68,7 @@ public final class VimeoDeeplink {
 
     private static final String CATEGORIES = "/categories";
     private static final String EXPLORE = "/explore";
+    private static final String WATCH = "/watch";
     private static final String FEED = "/feed";
     private static final String ME = "/me";
     private static final String NOTIFICATIONS = "/notifications";
@@ -77,6 +78,7 @@ public final class VimeoDeeplink {
     private static final String PURCHASES = "/purchases";
     private static final String UPGRADE = "/upgrade";
     private static final String UPLOAD = "/upload";
+    private static final String ACCOUNT = "/account";
     private static final String VIDEO_MANAGER = "/manage/videos";
     private static final String WATCH_LATER = "/watchlater";
 
@@ -320,6 +322,28 @@ public final class VimeoDeeplink {
             return startActivity(context, intent);
         }
         return false;
+    }
+
+    /**
+     * Open the Vimeo App to the Account screen
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app opens the Account deeplink
+     */
+    public static boolean showAccount(@NonNull final Context context) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + ACCOUNT));
+        return startActivity(context, intent);
+    }
+
+    /**
+     * Open the Vimeo App to the Watch screen
+     *
+     * @param context an Android {@link Context}
+     * @return true if the Vimeo app opens the Watch deeplink
+     */
+    public static boolean showWatch(@NonNull final Context context) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(VIMEO_BASE_URI + WATCH));
+        return startActivity(context, intent);
     }
 
     /**
