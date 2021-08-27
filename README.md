@@ -1,3 +1,5 @@
+⚠️⚠️⚠️ This library has been deprecated and will be removed in the future. ⚠️⚠️⚠️
+
 # vimeo-deeplink-android
 A helper library to deep link into the official Vimeo Android Mobile App. 
 
